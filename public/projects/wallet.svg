@@ -1,0 +1,15 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c5e9f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#grad)"/>
+  <text x="600" y="350" font-size="56" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">
+    Naasa Wallet
+  </text>
+  <text x="600" y="420" font-size="28" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial">
+    Digital Wallet • PLACEHOLDER
+  </text>
+</svg>

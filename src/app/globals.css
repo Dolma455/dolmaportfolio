@@ -1,0 +1,321 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root, [data-theme="pink"] {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --bg-obsidian: #05070a;
+  --surface-dark: #0d1117;
+  --surface-card: #12161f;
+  --surface-elevated: #161b22;
+  --accent-100: 253 242 248;
+  --accent-200: 251 207 232;
+  --accent-300: 244 114 182;
+  --accent-400: 236 72 153;
+  --accent-500: 219 39 119;
+  --accent-600: 190 24 93;
+  --theme-glow: 244, 114, 182;
+  --selection-bg: rgba(244, 114, 182, 0.3);
+  --selection-color: #FBCFE8;
+}
+
+[data-theme="purple"] {
+  --accent-100: 250 245 255;
+  --accent-200: 233 213 255;
+  --accent-300: 216 180 254;
+  --accent-400: 192 132 252;
+  --accent-500: 168 85 247;
+  --accent-600: 147 51 234;
+  --theme-glow: 192, 132, 252;
+  --selection-bg: rgba(192, 132, 252, 0.3);
+  --selection-color: #E9D5FF;
+}
+
+[data-theme="yellow"] {
+  --accent-100: 254 252 232;
+  --accent-200: 254 240 138;
+  --accent-300: 253 224 71;
+  --accent-400: 250 204 21;
+  --accent-500: 234 179 8;
+  --accent-600: 202 138 4;
+  --theme-glow: 250, 204, 21;
+  --selection-bg: rgba(250, 204, 21, 0.3);
+  --selection-color: #FEF08A;
+}
+
+[data-theme="red"] {
+  --accent-100: 255 241 242;
+  --accent-200: 254 205 211;
+  --accent-300: 253 164 175;
+  --accent-400: 251 113 133;
+  --accent-500: 244 63 94;
+  --accent-600: 225 29 72;
+  --theme-glow: 251, 113, 133;
+  --selection-bg: rgba(251, 113, 133, 0.3);
+  --selection-color: #FECDD3;
+}
+
+[data-theme="blue"] {
+  --accent-100: 240 249 255;
+  --accent-200: 186 230 253;
+  --accent-300: 125 211 252;
+  --accent-400: 56 189 248;
+  --accent-500: 14 165 233;
+  --accent-600: 2 132 199;
+  --theme-glow: 56, 189, 248;
+  --selection-bg: rgba(56, 189, 248, 0.3);
+  --selection-color: #BAE6FD;
+}
+
+[data-theme="green"] {
+  --accent-100: 236 253 245;
+  --accent-200: 167 243 208;
+  --accent-300: 110 231 183;
+  --accent-400: 52 211 153;
+  --accent-500: 16 185 129;
+  --accent-600: 5 150 105;
+  --theme-glow: 52, 211, 153;
+  --selection-bg: rgba(52, 211, 153, 0.3);
+  --selection-color: #A7F3D0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #05070a !important;
+  color: #f5f7fa !important;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #05070a !important;
+  color: #f5f7fa !important;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-family: 'Satoshi', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Selection Color */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05070a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent-500), 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--accent-400));
+}
+
+/* Glassmorphism surfaces */
+.glass-panel {
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(var(--accent-300), 0.15);
+}
+
+.text-gradient-cyan,
+.text-gradient-pink {
+  background: linear-gradient(135deg, rgb(var(--accent-200)), rgb(var(--accent-400)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Subtle grid background */
+.grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Infinite Horizontal Marquee */
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 32s linear infinite;
+}
+
+/* ==========================================================================
+   Parallax Image Layers (Osmo)
+   ========================================================================== */
+.parallax {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-obsidian, #05070a);
+}
+
+.parallax__header {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.parallax__visuals {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.parallax__black-line-overflow {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #05070a;
+  z-index: 10;
+}
+
+.parallax__layers {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.parallax__layer-img {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 125%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.parallax__layer-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.parallax__title {
+  font-size: clamp(3.5rem, 13vw, 10rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 12px 48px rgba(0, 0, 0, 0.75);
+}
+
+.parallax__fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  background: linear-gradient(to bottom, transparent, #05070a);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.parallax__content {
+  position: relative;
+  z-index: 10;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem;
+  background-color: #05070a;
+  text-align: center;
+}
+
+.osmo-icon-svg {
+  width: 4rem;
+  height: 4rem;
+}
+
+.osmo-credits {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  background-color: #05070a;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.osmo-credits__p {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.osmo-credits__p-a {
+  color: #f472b6;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.2s;
+}
+
+.osmo-credits__p-a:hover {
+  color: #fbcfe8;
+}
+
