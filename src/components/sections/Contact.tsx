@@ -1,0 +1,326 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Mail,
+  Copy,
+  Check,
+  ArrowUpRight,
+  Send,
+  X,
+  Sparkles,
+  Linkedin,
+  Instagram,
+  Github,
+} from 'lucide-react';
+import confetti from 'canvas-confetti';
+import Magnetic from '@/components/ui/Magnetic';
+import Starfield from '@/components/ui/Starfield';
+import { PERSONAL_INFO } from '@/data/portfolioData';
+
+const SOCIAL_ICONS: Record<string, React.ReactNode> = {
+  linkedin: <Linkedin className="w-5 h-5" />,
+  instagram: <Instagram className="w-5 h-5" />,
+  github: <Github className="w-5 h-5" />,
+  tiktok: (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+    </svg>
+  ),
+};
+
+export default function Contact() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+  // Close modal on Escape key press and lock background scroll
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsModalOpen(false);
+    };
+
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isModalOpen]);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(PERSONAL_INFO.email);
+    setCopied(true);
+    confetti({
+      particleCount: 50,
+      spread: 60,
+      origin: { y: 0.8 },
+      colors: ['#F472B6', '#C084FC', '#38BDF8'],
+    });
+    setTimeout(() => setCopied(false), 3000);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    confetti({
+      particleCount: 100,
+      spread: 80,
+      origin: { y: 0.6 },
+      colors: ['#F472B6', '#34D399', '#38BDF8'],
+    });
+  };
+
+  return (
+    <section
+      id="contact"
+      className="relative py-20 sm:py-24 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden flex flex-col justify-center items-center border-t border-white/5 text-center"
+    >
+      {/* Background Starfield & Deep Radial Glow */}
+      <Starfield density={50} />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-t from-pink-500/10 via-rose-500/5 to-transparent blur-[160px] pointer-events-none rounded-full" />
+
+      <div className="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-center text-center">
+        {/* Grand Headline Message */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight mb-3"
+        >
+          LET&apos;S WORK TOGETHER.
+        </motion.h2>
+
+        {/* Short Subtext */}
+        <p className="text-sm sm:text-base text-slate-400 max-w-lg mx-auto leading-relaxed mb-8 font-normal">
+          Have a project in mind, an open role, or just want to say hello? Let&apos;s connect.
+        </p>
+
+        {/* The Action Button */}
+        <div className="mb-12 sm:mb-16">
+          <Magnetic strength={0.3}>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-sm sm:text-base transition-all shadow-[0_0_30px_rgba(var(--theme-glow),0.4)] hover:shadow-[0_0_40px_rgba(var(--theme-glow),0.6)] hover:scale-105 active:scale-98 cursor-pointer"
+            >
+              <span>Get in Touch</span>
+              <ArrowUpRight className="w-5 h-5" />
+            </button>
+          </Magnetic>
+        </div>
+
+        {/* Social Links Network - Pure Icons */}
+        <div className="pt-8 border-t border-white/10 w-full flex items-center justify-center gap-3 sm:gap-4">
+          {PERSONAL_INFO.socials.map((social) => (
+            <Magnetic key={social.label} strength={0.3}>
+              <a
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={social.label}
+                aria-label={social.label}
+                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-pink-300/40 flex items-center justify-center text-slate-300 hover:text-white transition-all shadow-sm group hover:scale-110 active:scale-95"
+              >
+                <span className="text-pink-300 group-hover:scale-110 transition-transform">
+                  {SOCIAL_ICONS[social.id || '']}
+                </span>
+              </a>
+            </Magnetic>
+          ))}
+        </div>
+
+        {/* Copyright & Location Info above with Socials */}
+        <div className="mt-8 text-xs font-mono text-slate-400/70 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 select-none">
+          <span>© 2026 Dolma Lama</span>
+          <span className="hidden sm:inline text-white/20">•</span>
+          <span>Bradford, United Kingdom</span>
+        </div>
+      </div>
+
+      {/* Aesthetic Dimmed DOLMA LAMA Wordmark at Bottom */}
+      <div className="relative z-10 w-full pt-10 sm:pt-14 pb-4 sm:pb-6 select-none pointer-events-none overflow-hidden text-center border-t border-white/[0.04] mt-10 px-2 sm:px-4">
+        {/* Soft bottom ambient glow */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-pink-500/[0.04] blur-[80px] pointer-events-none rounded-full" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="w-full flex items-center justify-center overflow-hidden"
+        >
+          <span className="text-[clamp(3.5rem,13.5vw,15.5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/25 via-white/[0.12] to-transparent leading-[0.82] uppercase select-none whitespace-nowrap block">
+            DOLMA LAMA
+          </span>
+        </motion.div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* CONTACT FORM MODAL POPUP                                                  */}
+      {/* ========================================================================= */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)}
+              className="fixed inset-0 bg-black/75 backdrop-blur-md transition-opacity"
+            />
+
+            {/* Modal Dialog Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 20 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-lg rounded-3xl bg-[#0D1117] border border-white/15 p-6 sm:p-8 shadow-2xl z-10 text-left overflow-hidden"
+            >
+              {/* Modal Top Ambient Glow */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 blur-[100px] pointer-events-none rounded-full" />
+
+              {/* Modal Header */}
+              <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
+                <div>
+                  <div className="flex items-center gap-2 text-xs font-mono text-pink-300 uppercase tracking-wider mb-1">
+                    <Sparkles className="w-3.5 h-3.5 text-pink-300" />
+                    <span>Direct Message</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                    Let's Connect
+                  </h3>
+                </div>
+
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
+                  aria-label="Close Contact Modal"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Form Body or Success State */}
+              {formSubmitted ? (
+                <div className="py-8 text-center">
+                  <div className="w-14 h-14 rounded-full bg-pink-500/20 text-pink-300 flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
+                    <Check className="w-7 h-7" />
+                  </div>
+                  <h4 className="text-xl font-bold text-white mb-2 tracking-tight">
+                    Message Dispatched!
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-400 max-w-xs mx-auto leading-relaxed mb-6">
+                    Thank you for reaching out. I look forward to connecting with you shortly.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setIsModalOpen(false);
+                    }}
+                    className="px-6 py-2.5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs transition-all shadow-[0_0_20px_rgba(var(--theme-glow),0.3)]"
+                  >
+                    Done
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-mono text-slate-400 mb-1.5">
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="e.g. Alex Henderson"
+                      className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white placeholder:text-slate-600 text-sm focus:outline-none focus:border-pink-300 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono text-slate-400 mb-1.5">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="alex@company.com"
+                      className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white placeholder:text-slate-600 text-sm focus:outline-none focus:border-pink-300 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono text-slate-400 mb-1.5">
+                      Project Brief or Message
+                    </label>
+                    <textarea
+                      rows={3}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell me about your product, timeline, or inquiry..."
+                      className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white placeholder:text-slate-600 text-sm focus:outline-none focus:border-pink-300 transition-colors resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-3.5 rounded-xl bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(var(--theme-glow),0.3)] hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>Send Message</span>
+                  </button>
+                </form>
+              )}
+
+              {/* Direct Email & Quick-Copy Bar */}
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                <a
+                  href={`mailto:${PERSONAL_INFO.email}`}
+                  className="flex items-center gap-1.5 hover:text-white transition-colors truncate"
+                  title="Send via default mail client"
+                >
+                  <Mail className="w-3.5 h-3.5 text-pink-300 shrink-0" />
+                  <span className="font-mono text-[11px] truncate">{PERSONAL_INFO.email}</span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="flex items-center gap-1 text-[11px] font-mono text-pink-300 hover:underline shrink-0 ml-2"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3 h-3 text-emerald-400" />
+                      <span className="text-emerald-400">Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3 h-3" />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
