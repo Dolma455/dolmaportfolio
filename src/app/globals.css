@@ -2,21 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-:root, [data-theme="pink"] {
+:root, [data-theme="yellow"] {
   --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --bg-obsidian: #05070a;
   --surface-dark: #0d1117;
   --surface-card: #12161f;
   --surface-elevated: #161b22;
-  --accent-100: 253 242 248;
-  --accent-200: 251 207 232;
-  --accent-300: 244 114 182;
-  --accent-400: 236 72 153;
-  --accent-500: 219 39 119;
-  --accent-600: 190 24 93;
-  --theme-glow: 244, 114, 182;
-  --selection-bg: rgba(244, 114, 182, 0.3);
-  --selection-color: #FBCFE8;
+  --accent-100: 254 252 232;
+  --accent-200: 254 240 138;
+  --accent-300: 253 224 71;
+  --accent-400: 250 204 21;
+  --accent-500: 234 179 8;
+  --accent-600: 202 138 4;
+  --theme-glow: 250, 204, 21;
+  --selection-bg: rgba(250, 204, 21, 0.3);
+  --selection-color: #FEF08A;
 }
 
 [data-theme="purple"] {
@@ -31,16 +31,16 @@
   --selection-color: #E9D5FF;
 }
 
-[data-theme="yellow"] {
-  --accent-100: 254 252 232;
-  --accent-200: 254 240 138;
-  --accent-300: 253 224 71;
-  --accent-400: 250 204 21;
-  --accent-500: 234 179 8;
-  --accent-600: 202 138 4;
-  --theme-glow: 250, 204, 21;
-  --selection-bg: rgba(250, 204, 21, 0.3);
-  --selection-color: #FEF08A;
+[data-theme="pink"] {
+  --accent-100: 253 242 248;
+  --accent-200: 251 207 232;
+  --accent-300: 244 114 182;
+  --accent-400: 236 72 153;
+  --accent-500: 219 39 119;
+  --accent-600: 190 24 93;
+  --theme-glow: 244, 114, 182;
+  --selection-bg: rgba(244, 114, 182, 0.3);
+  --selection-color: #FBCFE8;
 }
 
 [data-theme="red"] {
