@@ -95,9 +95,9 @@ export default function AllProjectsPage() {
 
   return (
     <main className="min-h-screen bg-[#05070A] text-white pt-28 sm:pt-32 pb-24 px-4 sm:px-8 lg:px-14 select-none relative overflow-x-hidden">
-      {/* Ambient Radial Background Glows */}
-      <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-pink-500/5 blur-[180px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-40 right-1/4 w-[600px] h-[600px] bg-rose-500/5 blur-[180px] pointer-events-none rounded-full" />
+      {/* Ambient Radial Background Glows bound to dynamic theme */}
+      <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-[rgba(var(--theme-glow),0.06)] blur-[180px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-40 right-1/4 w-[600px] h-[600px] bg-cyan-500/3 blur-[180px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Back navigation */}
@@ -119,9 +119,9 @@ export default function AllProjectsPage() {
               <span>Full Portfolio Archive</span>
             </div>
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
-              All Projects
+              All <span className="text-pink-300">Projects</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-400 font-normal mt-2 max-w-xl leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 font-normal mt-2 max-w-xl leading-relaxed">
               Explore complete showcase of mobile applications, enterprise platforms, and interactive design systems built by Dolma Lama.
             </p>
           </div>
@@ -144,7 +144,7 @@ export default function AllProjectsPage() {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
                 activeCategory === cat
-                  ? 'bg-pink-300 text-black font-bold shadow-[0_0_15px_rgba(244,114,182,0.4)]'
+                  ? 'bg-pink-300 text-[#05070A] font-bold shadow-[0_0_15px_rgba(var(--theme-glow),0.4)]'
                   : 'bg-white/[0.04] border border-white/10 text-slate-300 hover:text-white hover:border-white/20'
               }`}
             >
@@ -174,9 +174,9 @@ export default function AllProjectsPage() {
                 </div>
 
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                  <div className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-pink-200 text-black font-bold text-xs shadow-xl">
+                  <div className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-pink-300 text-[#05070A] font-bold text-xs shadow-xl">
                     <span>View Case Study</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#05070A]" />
                   </div>
                 </div>
               </div>
@@ -193,7 +193,7 @@ export default function AllProjectsPage() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-pink-200 transition-colors tracking-tight mb-2">
+                  <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-pink-300 transition-colors tracking-tight mb-2">
                     {project.title}
                   </h3>
 

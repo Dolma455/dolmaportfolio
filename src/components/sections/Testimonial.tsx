@@ -61,21 +61,27 @@ const TESTIMONIAL_DATA: AnimatedTestimonialItem[] = [
 
 export default function Testimonial() {
   return (
-    <section id="testimonials" className="relative py-20 sm:py-24 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden border-t border-white/5">
-      {/* Subtle Ambient Glow */}
-      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-pink-500/5 blur-[160px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-rose-500/5 blur-[160px] pointer-events-none rounded-full" />
+    <section id="testimonials" className="relative py-24 sm:py-32 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden border-t border-white/5">
+      {/* Subtle Ambient Glows bound to dynamic theme */}
+      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-[rgba(var(--theme-glow),0.06)] blur-[180px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-cyan-500/3 blur-[180px] pointer-events-none rounded-full" />
 
       <div className="max-w-6xl mx-auto">
         
-        {/* Section Header: Pure White, Refined Size, No Chips */}
-        <div className="flex flex-col items-center text-center mb-10 sm:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
-            Trusted by Leaders & Teams
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-pink-300 uppercase tracking-wider mb-3">
+            <span>Social Proof // Feedback</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+            Trusted by <span className="text-pink-300">Leaders &amp; Teams</span>
           </h2>
+          <p className="text-sm sm:text-base text-slate-300 font-normal mt-3 max-w-xl">
+            Direct testimonials from founders, product directors, and engineering leads.
+          </p>
         </div>
 
-        {/* 1. First: Client Companies (No rectangle background) */}
+        {/* 1. First: Client Companies */}
         <div className="w-full flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 mb-12 sm:mb-16 py-2 px-4">
           {COMPANIES.map((company, index) => (
             <motion.div

@@ -27,13 +27,13 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: 'pink',
+  theme: 'yellow',
   setTheme: () => {},
   options: THEME_OPTIONS,
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<ThemeColor>('pink');
+  const [theme, setThemeState] = useState<ThemeColor>('yellow');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setThemeState(saved);
       document.documentElement.setAttribute('data-theme', saved);
     } else {
-      document.documentElement.setAttribute('data-theme', 'pink');
+      document.documentElement.setAttribute('data-theme', 'yellow');
     }
   }, []);
 

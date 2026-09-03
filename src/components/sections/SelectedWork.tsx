@@ -62,9 +62,9 @@ export default function SelectedWork() {
 
   return (
     <section id="work" className="relative bg-[#05070A] border-t border-white/5">
-      {/* Ambient Glows */}
-      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-pink-500/5 blur-[160px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-rose-500/5 blur-[160px] pointer-events-none rounded-full" />
+      {/* Ambient Glows bound to dynamic theme */}
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[rgba(var(--theme-glow),0.06)] blur-[180px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-cyan-500/3 blur-[180px] pointer-events-none rounded-full" />
 
       {/* Story Scroll Flow Art for 3 Featured Projects */}
       <div className="w-full">
@@ -112,7 +112,7 @@ export default function SelectedWork() {
                   <div className="mt-4 sm:mt-6">
                     <button
                       onClick={() => setSelectedProject(project.data)}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-bold text-xs sm:text-sm shadow-xl hover:bg-slate-100 transition-all hover:scale-105 cursor-pointer"
+                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(var(--theme-glow),0.35)] hover:shadow-[0_0_30px_rgba(var(--theme-glow),0.5)] transition-all hover:scale-105 cursor-pointer"
                     >
                       <span>View Project</span>
                       <ArrowUpRight className="w-4 h-4" />
@@ -132,9 +132,9 @@ export default function SelectedWork() {
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                    <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-bold text-xs shadow-2xl">
+                    <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-pink-300 text-[#05070A] font-bold text-xs shadow-2xl">
                       <span>Expand Case Study</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                      <ArrowUpRight className="w-3.5 h-3.5 text-[#05070A]" />
                     </div>
                   </div>
                 </div>
@@ -154,7 +154,7 @@ export default function SelectedWork() {
       <div className="-mt-4 sm:-mt-6 pb-12 sm:pb-16 flex flex-col items-center justify-center text-center relative z-20 px-4">
         <Link
           href="/projects"
-          className="group inline-flex items-center gap-2.5 px-7 sm:px-9 py-3 sm:py-3.5 rounded-full bg-white/[0.08] hover:bg-white text-white hover:text-black border border-white/15 hover:border-white font-bold text-xs sm:text-sm transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105 backdrop-blur-md"
+          className="group inline-flex items-center gap-2.5 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs sm:text-sm transition-all duration-300 shadow-[0_0_25px_rgba(var(--theme-glow),0.35)] hover:shadow-[0_0_35px_rgba(var(--theme-glow),0.55)] hover:scale-105 backdrop-blur-md cursor-pointer"
         >
           <span>View All Projects</span>
           <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

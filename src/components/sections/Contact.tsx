@@ -62,7 +62,7 @@ export default function Contact() {
       particleCount: 50,
       spread: 60,
       origin: { y: 0.8 },
-      colors: ['#F472B6', '#C084FC', '#38BDF8'],
+      colors: ['#FDE047', '#38BDF8', '#34D399', '#F472B6'],
     });
     setTimeout(() => setCopied(false), 3000);
   };
@@ -74,34 +74,39 @@ export default function Contact() {
       particleCount: 100,
       spread: 80,
       origin: { y: 0.6 },
-      colors: ['#F472B6', '#34D399', '#38BDF8'],
+      colors: ['#FDE047', '#38BDF8', '#34D399', '#F472B6'],
     });
   };
 
   return (
     <section
       id="contact"
-      className="relative py-20 sm:py-24 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden flex flex-col justify-center items-center border-t border-white/5 text-center"
+      className="relative py-24 sm:py-32 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden flex flex-col justify-center items-center border-t border-white/5 text-center"
     >
-      {/* Background Starfield & Deep Radial Glow */}
+      {/* Background Starfield & Deep Radial Glow bound to dynamic theme */}
       <Starfield density={50} />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-t from-pink-500/10 via-rose-500/5 to-transparent blur-[160px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-t from-[rgba(var(--theme-glow),0.12)] via-cyan-500/5 to-transparent blur-[180px] pointer-events-none rounded-full" />
 
       <div className="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-center text-center">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-pink-300 uppercase tracking-wider mb-4">
+          <span>Inquiries // Direct Connection</span>
+        </div>
+
         {/* Grand Headline Message */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight mb-3"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-4"
         >
-          LET&apos;S WORK TOGETHER.
+          LET&apos;S WORK <span className="text-pink-300">TOGETHER.</span>
         </motion.h2>
 
         {/* Short Subtext */}
-        <p className="text-sm sm:text-base text-slate-400 max-w-lg mx-auto leading-relaxed mb-8 font-normal">
-          Have a project in mind, an open role, or just want to say hello? Let&apos;s connect.
+        <p className="text-sm sm:text-base text-slate-300 max-w-lg mx-auto leading-relaxed mb-8 font-normal">
+          Have a project in mind, an open full-time role, or contract opportunity? Let&apos;s connect.
         </p>
 
         {/* The Action Button */}
@@ -148,7 +153,7 @@ export default function Contact() {
       {/* Aesthetic Dimmed DOLMA LAMA Wordmark at Bottom */}
       <div className="relative z-10 w-full pt-10 sm:pt-14 pb-4 sm:pb-6 select-none pointer-events-none overflow-hidden text-center border-t border-white/[0.04] mt-10 px-2 sm:px-4">
         {/* Soft bottom ambient glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-pink-500/[0.04] blur-[80px] pointer-events-none rounded-full" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-[rgba(var(--theme-glow),0.04)] blur-[80px] pointer-events-none rounded-full" />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -157,7 +162,7 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="w-full flex items-center justify-center overflow-hidden"
         >
-          <span className="text-[clamp(3.5rem,13.5vw,15.5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/25 via-white/[0.12] to-transparent leading-[0.82] uppercase select-none whitespace-nowrap block">
+          <span className="text-[clamp(3.5rem,13.5vw,15.5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/20 via-white/[0.08] to-transparent leading-[0.82] uppercase select-none whitespace-nowrap block">
             DOLMA LAMA
           </span>
         </motion.div>
@@ -187,7 +192,7 @@ export default function Contact() {
               className="relative w-full max-w-lg rounded-3xl bg-[#0D1117] border border-white/15 p-6 sm:p-8 shadow-2xl z-10 text-left overflow-hidden"
             >
               {/* Modal Top Ambient Glow */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 blur-[100px] pointer-events-none rounded-full" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[rgba(var(--theme-glow),0.12)] blur-[100px] pointer-events-none rounded-full" />
 
               {/* Modal Header */}
               <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
@@ -197,7 +202,7 @@ export default function Contact() {
                     <span>Direct Message</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Let's Connect
+                    Let&apos;s Connect
                   </h3>
                 </div>
 
@@ -205,7 +210,7 @@ export default function Contact() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
+                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-colors cursor-pointer"
                   aria-label="Close Contact Modal"
                 >
                   <X className="w-4 h-4" />
@@ -229,94 +234,84 @@ export default function Contact() {
                       setFormSubmitted(false);
                       setIsModalOpen(false);
                     }}
-                    className="px-6 py-2.5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs transition-all shadow-[0_0_20px_rgba(var(--theme-glow),0.3)]"
+                    className="px-6 py-2.5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs font-mono transition-all cursor-pointer shadow-lg"
                   >
-                    Done
+                    Close Window
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-mono text-slate-400 mb-1.5">
+                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
                       Your Name
                     </label>
                     <input
                       type="text"
                       required
+                      placeholder="Jane Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Alex Henderson"
-                      className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white placeholder:text-slate-600 text-sm focus:outline-none focus:border-pink-300 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 focus:border-pink-300 focus:outline-none text-white text-sm transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-slate-400 mb-1.5">
+                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
                       Email Address
                     </label>
                     <input
                       type="email"
                       required
+                      placeholder="jane@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="alex@company.com"
-                      className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white placeholder:text-slate-600 text-sm focus:outline-none focus:border-pink-300 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 focus:border-pink-300 focus:outline-none text-white text-sm transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-slate-400 mb-1.5">
-                      Project Brief or Message
+                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+                      Project Details
                     </label>
                     <textarea
-                      rows={3}
                       required
+                      rows={4}
+                      placeholder="Tell me about your product, timeline, or open role..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell me about your product, timeline, or inquiry..."
-                      className="w-full px-4 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white placeholder:text-slate-600 text-sm focus:outline-none focus:border-pink-300 transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 focus:border-pink-300 focus:outline-none text-white text-sm transition-colors resize-none"
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 rounded-xl bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(var(--theme-glow),0.3)] hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
-                  >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Send Message</span>
-                  </button>
+                  <div className="pt-2 flex items-center justify-between gap-4">
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="text-emerald-400">Email Copied</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy Email</span>
+                        </>
+                      )}
+                    </button>
+
+                    <button
+                      type="submit"
+                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs sm:text-sm font-mono shadow-[0_0_25px_rgba(var(--theme-glow),0.35)] transition-all hover:scale-105 cursor-pointer"
+                    >
+                      <span>Send Inquiry</span>
+                      <Send className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </form>
               )}
-
-              {/* Direct Email & Quick-Copy Bar */}
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-                <a
-                  href={`mailto:${PERSONAL_INFO.email}`}
-                  className="flex items-center gap-1.5 hover:text-white transition-colors truncate"
-                  title="Send via default mail client"
-                >
-                  <Mail className="w-3.5 h-3.5 text-pink-300 shrink-0" />
-                  <span className="font-mono text-[11px] truncate">{PERSONAL_INFO.email}</span>
-                </a>
-
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  className="flex items-center gap-1 text-[11px] font-mono text-pink-300 hover:underline shrink-0 ml-2"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="w-3 h-3 text-emerald-400" />
-                      <span className="text-emerald-400">Copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3 h-3" />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
-              </div>
             </motion.div>
           </div>
         )}

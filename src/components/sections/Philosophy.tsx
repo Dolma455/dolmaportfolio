@@ -7,18 +7,24 @@ import { EXPERIENCES } from '@/data/portfolioData';
 
 export default function Philosophy() {
   return (
-    <section id="about" className="relative py-20 sm:py-24 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden border-t border-white/5">
-      {/* Ambient Glows */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-pink-500/5 blur-[160px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-rose-500/5 blur-[160px] pointer-events-none rounded-full" />
+    <section id="about" className="relative py-24 sm:py-32 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden border-t border-white/5">
+      {/* Ambient Glows bound to dynamic theme */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[rgba(var(--theme-glow),0.06)] blur-[180px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/3 blur-[180px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header: Centered Aligned like others */}
-        <div className="flex flex-col items-center text-center mb-10 sm:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
-            Career & Experience
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-pink-300 uppercase tracking-wider mb-3">
+            <span>Career // Experience</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+            Career &amp; <span className="text-pink-300">Experience</span>
           </h2>
+          <p className="text-sm sm:text-base text-slate-300 font-normal mt-3 max-w-xl">
+            A journey bridging human-centered product ergonomics with high-performance software engineering.
+          </p>
         </div>
 
         {/* Combined Layout: Minimized Portrait on Left + Career & Experience on Right */}
@@ -36,7 +42,7 @@ export default function Philosophy() {
               className="rounded-3xl bg-[#0D1117] border border-white/10 p-5 shadow-2xl relative overflow-hidden group"
             >
               {/* Minimized Portrait Image Container */}
-              <div className="relative aspect-[4/4.2] w-full max-w-[310px] mx-auto rounded-2xl overflow-hidden bg-black/40 border border-white/10 mb-4 group-hover:border-pink-300/30 transition-all duration-500">
+              <div className="relative aspect-[4/4.2] w-full max-w-[310px] mx-auto rounded-2xl overflow-hidden bg-black/40 border border-white/10 mb-4 group-hover:border-pink-300/40 transition-all duration-500">
                 <img
                   src="/dolmalama.png"
                   alt="Dolma Lama"
@@ -48,11 +54,11 @@ export default function Philosophy() {
               {/* Identity & Short Bio */}
               <div className="text-left px-1">
                 <h3 className="text-xl font-bold text-white tracking-tight">Dolma Lama</h3>
-                <p className="text-xs font-mono text-pink-300 mt-0.5 mb-2.5">
-                  UX/UI Designer & Fullstack Developer
+                <p className="text-xs font-mono text-pink-300 mt-0.5 mb-2.5 font-semibold">
+                  Product Designer &amp; Engineer
                 </p>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                  UX/UI Designer with robust engineering skills across mobile app development, frontend, backend, and cloud architectures.
+                  Experienced product designer with robust engineering depth across mobile app development, design systems, and cloud infrastructure.
                 </p>
               </div>
             </motion.div>
@@ -66,7 +72,7 @@ export default function Philosophy() {
             {/* Vertical Connected Timeline */}
             <div className="relative pl-7 sm:pl-9 space-y-6">
               
-              {/* Single-color vertical connector line precisely centered with pointer */}
+              {/* Vertical connector line dynamically bound to active theme */}
               <div className="absolute left-[14px] top-3 bottom-3 w-[2px] bg-pink-300/25" />
 
               {EXPERIENCES.map((exp, index) => (
@@ -78,13 +84,13 @@ export default function Philosophy() {
                   transition={{ duration: 0.5, delay: index * 0.12 }}
                   className="relative group"
                 >
-                  {/* Circular Pointer Node - EXACTLY centered on the 15px axis */}
-                  <div className="absolute left-[-21px] sm:left-[-29px] top-6 w-4 h-4 rounded-full bg-[#05070A] border-2 border-pink-300 flex items-center justify-center shadow-[0_0_8px_rgba(var(--theme-glow),0.4)] group-hover:scale-125 transition-transform">
+                  {/* Circular Pointer Node */}
+                  <div className="absolute left-[-21px] sm:left-[-29px] top-6 w-4 h-4 rounded-full bg-[#05070A] border-2 border-pink-300 flex items-center justify-center shadow-[0_0_10px_rgba(var(--theme-glow),0.4)] group-hover:scale-125 transition-transform">
                     <div className="w-1.5 h-1.5 rounded-full bg-pink-300" />
                   </div>
 
                   {/* Experience Card */}
-                  <div className="rounded-3xl bg-[#0D1117] border border-white/10 p-5 sm:p-6 shadow-xl group-hover:border-pink-300/30 transition-all text-left">
+                  <div className="rounded-3xl bg-[#0D1117] border border-white/10 p-5 sm:p-6 shadow-xl group-hover:border-pink-300/40 transition-all text-left">
                     
                     {/* Card Top Row: Role & Period on Left, Company/Uni at Top Right */}
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-3">
@@ -92,7 +98,7 @@ export default function Philosophy() {
                         <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
                           {exp.role}
                         </h3>
-                        <span className="text-xs font-mono text-pink-300 font-medium tracking-wide">
+                        <span className="text-xs font-mono text-pink-300 font-semibold tracking-wide">
                           {exp.period}
                         </span>
                       </div>

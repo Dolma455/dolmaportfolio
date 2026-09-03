@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Menu, X, Download, Palette, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Download, Palette } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
 const NAV_ITEMS = [
@@ -127,13 +127,13 @@ export default function Navbar() {
             isVisible ? 'pointer-events-auto' : 'pointer-events-none'
           }`}
         >
-          {/* Brand Logo: Dolma (Primary Colored, No Dot) */}
+          {/* Brand Logo: Dolma */}
           <a
             href="#home"
             onClick={(e) => scrollToSection(e, '#home')}
             className="flex items-center group cursor-pointer select-none shrink-0 mr-1 sm:mr-2"
           >
-            <span className="text-base sm:text-lg font-black tracking-tight text-pink-300 hover:text-pink-200 transition-colors drop-shadow-[0_0_12px_rgba(244,114,182,0.35)]">
+            <span className="text-base sm:text-lg font-black tracking-tight text-pink-300 hover:text-pink-200 transition-colors drop-shadow-[0_0_12px_rgba(var(--theme-glow),0.35)]">
               Dolma
             </span>
           </a>
@@ -149,7 +149,7 @@ export default function Navbar() {
                   onClick={(e) => scrollToSection(e, item.href)}
                   className={`px-3 lg:px-3.5 py-2 rounded-full text-[13px] sm:text-sm font-semibold tracking-normal transition-all shrink-0 whitespace-nowrap ${
                     isActive
-                      ? 'text-white bg-white/10 shadow-sm'
+                      ? 'text-pink-300 bg-pink-500/10 shadow-sm font-bold'
                       : 'text-slate-200 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -161,16 +161,6 @@ export default function Navbar() {
 
           {/* Right Actions: Theme, CV, Let's Connect */}
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 whitespace-nowrap ml-1 sm:ml-2">
-            {/* Interactive Playground Link */}
-            <a
-              href="/playground"
-              className="h-8.5 w-8.5 sm:h-9 sm:w-9 md:h-10 md:w-10 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-pink-300/40 text-slate-300 hover:text-pink-300 transition-all flex items-center justify-center cursor-pointer shrink-0"
-              title="Interactive Playground Desk"
-              aria-label="Interactive Playground Desk"
-            >
-              <Sparkles className="w-4 h-4 text-cyan-300 hover:text-pink-300 transition-colors" />
-            </a>
-
             {/* Theme Picker */}
             <div className="relative shrink-0" ref={themeMenuRef}>
               <button
@@ -229,7 +219,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={(e) => scrollToSection(e, '#contact')}
-              className="inline-flex items-center gap-1.5 h-8.5 sm:h-9 md:h-10 px-4 sm:px-5 rounded-full bg-pink-500/15 hover:bg-pink-500/25 border border-pink-400/30 hover:border-pink-300/60 text-xs sm:text-sm font-semibold tracking-normal text-pink-200 hover:text-white transition-all shadow-[0_0_12px_rgba(244,114,182,0.15)] backdrop-blur-md cursor-pointer shrink-0 whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 h-8.5 sm:h-9 md:h-10 px-4 sm:px-5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs sm:text-sm tracking-normal transition-all shadow-[0_0_20px_rgba(var(--theme-glow),0.35)] hover:scale-105 backdrop-blur-md cursor-pointer shrink-0 whitespace-nowrap"
             >
               <span>Let&apos;s Connect</span>
               <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
@@ -298,7 +288,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, '#contact')}
-                className="mt-2 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-pink-500/20 border border-pink-400/40 text-xs font-mono font-semibold text-pink-200 hover:text-white shadow-lg"
+                className="mt-2 flex items-center justify-center gap-2 w-full py-2.5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs font-mono shadow-[0_0_20px_rgba(var(--theme-glow),0.35)] transition-all"
               >
                 <span>Let&apos;s Connect</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
