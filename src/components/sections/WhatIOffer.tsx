@@ -1,46 +1,48 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
-import { Sparkles } from "lucide-react";
-import ArcFlowCarousel, { SmoothSliderItem } from "@/components/ui/arc-flow-carousel";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import HorizontalScrollMarquee from "@/components/ui/horizontal-marquee";
 
-const CORE_SERVICES: SmoothSliderItem[] = [
-  {
-    src: "/services/ux-ui-design.jpg",
-    alt: "UX/UI Design Mockup",
-    title: "UX/UI Design",
-    tags: ["Figma", "Design Systems", "Prototyping", "UX Research"],
-    href: "/methodology/ux-ui-design",
-  },
-  {
-    src: "/services/flutter-development.jpg",
-    alt: "Flutter Development Mockup",
-    title: "Flutter Development",
-    tags: ["Flutter", "Dart", "iOS & Android", "BLoC State"],
-    href: "/methodology/flutter-development",
-  },
-  {
-    src: "/services/frontend-backend.jpg",
-    alt: "Frontend and Backend Mockup",
-    title: "Frontend & Backend",
-    tags: ["Next.js", "TypeScript", "Node.js", "REST & GraphQL"],
-    href: "/methodology/backend-cloud-development",
-  },
-  {
-    src: "/services/cloud-development.jpg",
-    alt: "Cloud Development Mockup",
-    title: "Cloud Development",
-    tags: ["Azure Cloud", "Docker", "DevOps", "Microservices"],
-    href: "/methodology/backend-cloud-development",
-  },
-];
+interface ServiceItem {
+  title: string;
+  description: string;
+  tags: string[];
+  image: string;
+  href: string;
+  accent: string;
+}
 
-// Replicated to provide seamless continuous 3D arc flow wheel rotation
-const SERVICES_CAROUSEL_ITEMS: SmoothSliderItem[] = [
-  ...CORE_SERVICES,
-  ...CORE_SERVICES,
+const THREE_SERVICES: ServiceItem[] = [
+  {
+    title: "UX/UI Design",
+    description:
+      "Crafting human-centered digital interfaces, design systems, interactive prototypes, and accessible user experiences in Figma.",
+    tags: ["Figma", "Design Systems", "Prototyping", "UX Research"],
+    image: "/services/ux-ui-design.jpg",
+    href: "/methodology/ux-ui-design",
+    accent: "#FDE047",
+  },
+  {
+    title: "Flutter Development",
+    description:
+      "Engineering native iOS & Android applications with fluid 120fps motion, clean BLoC architecture, and robust offline-first synchronization.",
+    tags: ["Flutter", "Dart", "iOS & Android", "BLoC State"],
+    image: "/services/flutter-development.jpg",
+    href: "/methodology/flutter-development",
+    accent: "#38BDF8",
+  },
+  {
+    title: "Backend & Cloud Dev",
+    description:
+      "Architecting high-throughput REST and GraphQL APIs, resilient microservices, Docker container clusters, and scalable Azure cloud topologies.",
+    tags: ["Node.js", "Azure Cloud", "Docker", "REST & GraphQL"],
+    image: "/services/cloud-development.jpg",
+    href: "/methodology/backend-cloud-development",
+    accent: "#34D399",
+  },
 ];
 
 const EXPERTISE_TOOLS = [
@@ -188,58 +190,81 @@ const EXPERTISE_TOOLS = [
 ];
 
 export default function WhatIOffer() {
-  const router = useRouter();
-
   return (
     <section
       id="offerings"
-      className="relative py-20 sm:py-24 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden border-t border-white/5"
+      className="relative py-24 sm:py-32 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden border-t border-white/5"
     >
-      {/* Ambient Glows */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-pink-500/5 blur-[160px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-rose-500/5 blur-[160px] pointer-events-none rounded-full" />
+      {/* Ambient Glows bound to dynamic theme */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[rgba(var(--theme-glow),0.06)] blur-[180px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/3 blur-[180px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-10 sm:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
-            My Services
+        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-pink-300 uppercase tracking-wider mb-3">
+            <span>Core Disciplines // Technical Craft</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+            My <span className="text-pink-300">Services</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-mono mt-2">
-            3D interactive showcase of technical disciplines &amp; product craft
+          <p className="text-sm sm:text-base text-slate-300 font-normal mt-3 max-w-xl">
+            Human-centered product design paired with scalable full-stack and mobile engineering.
           </p>
         </div>
 
-        {/* 3D Arc Flow Carousel for Services */}
-        <div className="w-full relative flex flex-col items-center">
-          <ArcFlowCarousel
-            items={SERVICES_CAROUSEL_ITEMS}
-            radiusRatio={0.92}
-            cardRatio={0.28}
-            minCardWidth={270}
-            maxCardWidth={390}
-            cardAspect={0.94}
-            overlap={-0.03}
-            arcOffset={0.36}
-            smoothing={5.5}
-            dragSensitivity={1.15}
-            momentum={1}
-            wheelControl="horizontal"
-            autoRotateSpeed={0.06}
-            pauseOnHover
-            surfaceColor="#05070a"
-            className="h-[550px] sm:h-[620px] md:h-[680px]"
-            onCardClick={(item) => {
-              if (item.href) {
-                router.push(item.href);
-              }
-            }}
-          />
+        {/* Simple 3 Cards Grid for Services */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto w-full">
+          {THREE_SERVICES.map((service) => (
+            <Link
+              key={service.title}
+              href={service.href}
+              className="block group"
+            >
+              <Card className="h-full overflow-hidden rounded-2xl border border-white/10 bg-[#0C1017]/90 backdrop-blur-xl hover:border-pink-300/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-2xl flex flex-col justify-between">
+                {/* Image Banner */}
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-black/40 border-b border-white/10">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0C1017] via-transparent to-transparent opacity-70" />
+                </div>
 
-          <div className="flex items-center justify-center gap-2 mt-4 text-xs font-mono text-slate-400">
-            <Sparkles className="w-3.5 h-3.5 text-pink-300" />
-            <span>Drag or scroll to explore disciplines • Click any card to explore methodology</span>
-          </div>
+                {/* Card Content */}
+                <CardContent className="p-6 flex flex-col flex-1 justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-pink-300 transition-colors">
+                        {service.title}
+                      </h3>
+                      <ArrowUpRight
+                        size={18}
+                        className="text-slate-400 group-hover:text-pink-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0"
+                      />
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed mt-3">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-1.5">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[10px] font-mono text-slate-300 group-hover:border-pink-300/20 transition-colors"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
         </div>
 
         {/* ================================================== */}
@@ -247,7 +272,7 @@ export default function WhatIOffer() {
         {/* ================================================== */}
         <div className="pt-16 sm:pt-24 flex flex-col items-center w-full">
           <div className="text-center mb-6 sm:mb-8">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#FDE047] font-bold">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-pink-300 font-bold">
               Expertise Tools &amp; Technologies
             </span>
             <p className="text-xs text-slate-400 font-mono mt-1">
