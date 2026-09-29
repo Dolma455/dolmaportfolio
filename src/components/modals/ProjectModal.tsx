@@ -104,7 +104,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     onClick={() => setActiveImageIndex(idx)}
                     className={`relative w-24 h-16 rounded-xl overflow-hidden border transition-all shrink-0 ${
                       activeImageIndex === idx
-                        ? 'border-cyan-400 ring-2 ring-cyan-400/40'
+                        ? 'border-pink-300 ring-2 ring-pink-300/40'
                         : 'border-white/10 opacity-60 hover:opacity-100'
                     }`}
                   >

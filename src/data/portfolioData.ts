@@ -16,9 +16,14 @@ export interface Project {
   tools: string[];
   liveUrl?: string;
   figmaUrl?: string;
+  githubUrl?: string;
   metrics: { label: string; value: string }[];
   features: string[];
   tag: string;
+  shortDescription?: string;
+  designContribution: number;
+  devContribution: number;
+  mockupType?: 'desktop' | 'mobile' | 'dual';
 }
 
 export interface ProcessStage {
@@ -105,6 +110,10 @@ export const PROJECTS: Project[] = [
     role: 'Lead UI/UX Designer & Frontend Architect',
     client: 'Naasa Securities Labs',
     timeline: '4 Months',
+    shortDescription: 'High-frequency institutional trading cockpit with real-time WebSockets, custom depth visualization, and slippage controls.',
+    designContribution: 80,
+    devContribution: 20,
+    mockupType: 'desktop',
     problem:
       'High-frequency traders were bogged down by cluttered legacy order books, slow order routing latency, and complex multi-token swap parameters with zero real-time visual feedback.',
     solution:
@@ -118,6 +127,7 @@ export const PROJECTS: Project[] = [
       '/projects/naasaxweb_order.png',
       '/projects/naasaxweb_report.png',
       '/projects/naasaxweb_login.png',
+      '/projects/naasax.jpg',
     ],
     tools: ['Figma', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'WebSockets'],
     liveUrl: 'https://github.com/Dolma455',
@@ -142,6 +152,10 @@ export const PROJECTS: Project[] = [
     role: 'UX Researcher & Lead Frontend Engineer',
     client: 'Agrilink Systems UK',
     timeline: '3 Months',
+    shortDescription: 'Centralized IoT telemetry and smart agriculture control hub with automated irrigation alerts and sensor cluster tracking.',
+    designContribution: 70,
+    devContribution: 30,
+    mockupType: 'dual',
     problem:
       'Agricultural operations managers juggled fragmented manual spreadsheets and disconnected hardware telemetry, causing severe delays in irrigation response and crop loss.',
     solution:
@@ -177,6 +191,10 @@ export const PROJECTS: Project[] = [
     role: 'Principal Product Designer & UI Developer',
     client: 'Infinity Global Labs',
     timeline: '5 Months',
+    shortDescription: 'Spatial UI productivity environment combining neural network graph mapping, canvas collaboration, and conversational AI copilots.',
+    designContribution: 75,
+    devContribution: 25,
+    mockupType: 'desktop',
     problem:
       'Distributed product teams were losing 8+ hours weekly switching between siloed tickets, documents, and Figma files with zero contextual synthesis.',
     solution:
@@ -187,9 +205,16 @@ export const PROJECTS: Project[] = [
     galleryImages: [
       '/projects/ci_dashboard.png',
       '/projects/ciproductpage_hero.png',
+      '/projects/ciproductpage_services.png',
+      '/projects/ciproductpage_journey.png',
+      '/projects/ciproductpage_qn.png',
+      '/projects/ciproductpage_register.png',
+      '/projects/ciproductpage_2.png',
       '/projects/ci_report.png',
       '/projects/ci_revai.png',
-      '/projects/ciproductpage_services.png',
+      '/projects/ci_settings.png',
+      '/projects/ci_summary.png',
+      '/projects/connect-infinity.jpg',
     ],
     tools: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Figma', 'GraphQL', 'OpenAI'],
     liveUrl: 'https://github.com/Dolma455',
@@ -206,6 +231,176 @@ export const PROJECTS: Project[] = [
     tag: 'Spatial UI & AI Knowledge System',
   },
   {
+    id: 'self-service-app',
+    title: 'Self Service App',
+    subtitle: 'Biometric Mobile Onboarding & Frictionless KYC Banking Client',
+    category: 'Mobile & Banking UI',
+    year: '2024',
+    role: 'Lead Mobile UI/UX Designer & Flutter Engineer',
+    client: 'Naasa Securities Mobile',
+    timeline: '3.5 Months',
+    shortDescription: 'Frictionless customer onboarding mobile application featuring biometrics, instant KYC document scanning, and automated account provisioning.',
+    designContribution: 70,
+    devContribution: 30,
+    mockupType: 'mobile',
+    problem:
+      'Users faced high drop-off during manual paper KYC identity verification and complex portfolio tracking on legacy platforms.',
+    solution:
+      'Engineered a frictionless 4-step biometric KYC onboarding application with real-time document OCR and live portfolio tracking.',
+    impact: 'Cut verification turnaround from 4 days to under 10 minutes; 92% completion rate.',
+    accentColor: '#A78BFA',
+    coverImage: '/projects/ssa_dashbaord.PNG',
+    galleryImages: [
+      '/projects/ssa_dashbaord.PNG',
+      '/projects/ssa_portfolio.PNG',
+      '/projects/ssa_details.PNG',
+      '/projects/ssa_gainerloser.PNG',
+      '/projects/ssa_order.PNG',
+      '/projects/ssa_kyc.PNG',
+      '/projects/ssa_profile.PNG',
+      '/projects/ssa_settings.PNG',
+      '/projects/ssa_sidebar.PNG',
+      '/projects/ssa_theme.PNG',
+      '/projects/ssa_login.PNG',
+    ],
+    tools: ['Flutter', 'Dart', 'Figma', 'Biometrics', 'Firebase'],
+    liveUrl: 'https://github.com/Dolma455',
+    metrics: [
+      { label: 'Completion Rate', value: '92%' },
+      { label: 'KYC Verification', value: '< 10 mins' },
+      { label: 'App Store Rating', value: '4.8 ★' },
+    ],
+    features: [
+      'One-tap biometric passkey login',
+      'Step-by-step verified KYC flow with instant visual feedback',
+      'Real-time portfolio gain/loss visualizer',
+    ],
+    tag: 'Mobile Experience & Fintech',
+  },
+  {
+    id: 'nepal-stock-house',
+    title: 'Nepal Stock House',
+    subtitle: 'Modern Institutional Broker Terminal & Real-Time Market Portal',
+    category: 'Fintech & Equity Trading',
+    year: '2024',
+    role: 'Lead Product Designer & Frontend Engineer',
+    client: 'Nepal Stock House',
+    timeline: '4 Months',
+    shortDescription: 'High-density institutional equity trading terminal featuring real-time market depth, live order matching, and comprehensive portfolio telemetry.',
+    designContribution: 75,
+    devContribution: 25,
+    mockupType: 'desktop',
+    problem:
+      'Traders relied on slow, archaic web portals with multi-second latency spikes, difficult order navigation, and disconnected stock intelligence charts.',
+    solution:
+      'Engineered an ultra-fast trading dashboard with live WebSocket feeds, synchronized technical depth charts, and automated trade settlement monitoring.',
+    impact: 'Accelerated order execution by 54%; NPS among active day traders rose to 86.',
+    accentColor: '#38BDF8',
+    coverImage: '/projects/nsh_1.png',
+    galleryImages: [
+      '/projects/nsh_1.png',
+      '/projects/nsh_2.png',
+      '/projects/nsh_3.png',
+      '/projects/nsh_4.png',
+      '/projects/nsh_5.png',
+      '/projects/nsh_6.png',
+      '/projects/nsh_7.png',
+    ],
+    tools: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Figma', 'WebSockets', 'Chart.js'],
+    liveUrl: 'https://github.com/Dolma455',
+    metrics: [
+      { label: 'Execution Speedup', value: '+54%' },
+      { label: 'Trader NPS', value: '86' },
+      { label: 'Daily Trades', value: '35k+' },
+    ],
+    features: [
+      'Real-time Level 2 order book and interactive depth charts',
+      'Automated equity screener with custom technical filters',
+      'Institutional trade settlement and tax computation ledger',
+    ],
+    tag: 'Institutional FinTech & Capital Markets',
+  },
+  {
+    id: 'naasa-website',
+    title: 'Naasa Securities Portal',
+    subtitle: 'Corporate Financial Portal & Institutional Investor Hub',
+    category: 'Corporate & Web Platform',
+    year: '2024',
+    role: 'Lead UI/UX Designer & Frontend Engineer',
+    client: 'Naasa Securities',
+    timeline: '2 Months',
+    shortDescription: 'Modern corporate financial institution portal with structured investor relations, accessible token systems, and responsive design.',
+    designContribution: 70,
+    devContribution: 30,
+    mockupType: 'desktop',
+    problem:
+      'Traditional brokerage websites suffered from dense, unreadable disclosures, outdated PDF downloads, and poor mobile accessibility.',
+    solution:
+      'Crafted a modern institutional financial portal with structured investor relations, accessible design system tokens, and interactive trading account onboarding.',
+    impact: 'Boosted account opening inquiries by 52%; reduced bounce rate by 38%.',
+    accentColor: '#38BDF8',
+    coverImage: '/projects/naasawebsite_1.png',
+    galleryImages: [
+      '/projects/naasawebsite_1.png',
+      '/projects/naasawebsite_2.png',
+      '/projects/naasawebsite_3.png',
+    ],
+    tools: ['Figma', 'Next.js', 'Tailwind CSS', 'TypeScript'],
+    liveUrl: 'https://github.com/Dolma455',
+    metrics: [
+      { label: 'Inquiries Growth', value: '+52%' },
+      { label: 'Bounce Rate', value: '-38%' },
+      { label: 'Mobile Score', value: '98/100' },
+    ],
+    features: [
+      'Interactive financial disclosure visualizer',
+      'Unified accessible design system with WCAG AAA tokens',
+      'Responsive investor relations portal',
+    ],
+    tag: 'Fintech Portal & Identity',
+  },
+  {
+    id: 'naasa-kyc',
+    title: 'Digital KYC Verification',
+    subtitle: 'Multi-Step Compliant Digital Identity & Investor Onboarding Suite',
+    category: 'Fintech & Identity',
+    year: '2024',
+    role: 'Lead UI/UX Designer & Systems Architect',
+    client: 'Naasa Securities RegTech',
+    timeline: '2 Months',
+    shortDescription: 'Regulatory-compliant multi-step digital KYC verification pipeline featuring document validation, family due diligence, and biometric verification.',
+    designContribution: 80,
+    devContribution: 20,
+    mockupType: 'desktop',
+    problem:
+      'Paper-based investor identification caused average onboarding delays of 7 days with error rates exceeding 26% on manual document uploads.',
+    solution:
+      'Designed a guided 4-step progressive disclosure portal covering personal identification, family declarations, nominee allocations, and digital signatures.',
+    impact: 'Reduced verification turnaround to under 2 hours; form completion accuracy reached 98.4%.',
+    accentColor: '#10B981',
+    coverImage: '/projects/naasakyc_general.png',
+    galleryImages: [
+      '/projects/naasakyc_general.png',
+      '/projects/naasakyc_personal.png',
+      '/projects/naasakyc_family.png',
+      '/projects/naasakyc_nominee.png',
+      '/projects/kyc.jpg',
+    ],
+    tools: ['Figma', 'React', 'TypeScript', 'Tailwind CSS', 'RegTech API'],
+    liveUrl: 'https://github.com/Dolma455',
+    metrics: [
+      { label: 'Verification Time', value: '< 2 hrs' },
+      { label: 'Completion Rate', value: '98.4%' },
+      { label: 'Compliance Score', value: '100%' },
+    ],
+    features: [
+      'Progressive disclosure 4-stage identity collection',
+      'Instant document validation and proof verification previews',
+      'Compliant digital signature and nominee distribution engine',
+    ],
+    tag: 'RegTech & Compliance Architecture',
+  },
+  {
     id: 'loyaledge',
     title: 'LoyalEdge',
     subtitle: 'Automated Retention Engine & Customer Rewards Architecture',
@@ -214,6 +409,10 @@ export const PROJECTS: Project[] = [
     role: 'Product Designer & Frontend Developer',
     client: 'LoyalEdge Commerce',
     timeline: '3 Months',
+    shortDescription: 'Automated retention and customer rewards architecture with visual campaign builder and Apple/Google Wallet pass widgets.',
+    designContribution: 65,
+    devContribution: 35,
+    mockupType: 'desktop',
     problem:
       'E-commerce merchants had difficulty configuring dynamic multi-tier loyalty campaigns without hiring engineering agencies to build custom tracking logic.',
     solution:
@@ -226,6 +425,7 @@ export const PROJECTS: Project[] = [
       '/projects/loyaledge_2.png',
       '/projects/loyaledge_3.png',
       '/projects/loyaledge_4.png',
+      '/projects/loyaledge.jpg',
     ],
     tools: ['React', 'Figma', 'Tailwind CSS', 'TypeScript', 'Storybook', 'Postman'],
     liveUrl: 'https://github.com/Dolma455',
@@ -250,6 +450,10 @@ export const PROJECTS: Project[] = [
     role: 'Lead UI/UX Designer & Flutter Engineer',
     client: 'FlyHigh Aviation UK',
     timeline: '2.5 Months',
+    shortDescription: 'Gesture-driven mobile flight booking experience with tactile 3D cabin seat selection, fare transparency, and biometric checkout.',
+    designContribution: 70,
+    devContribution: 30,
+    mockupType: 'mobile',
     problem:
       'Clunky multi-page checkout flows and opaque pricing breakdowns led to a 68% cart abandonment rate on mobile devices.',
     solution:
@@ -260,6 +464,7 @@ export const PROJECTS: Project[] = [
     galleryImages: [
       '/projects/flyhigh_1.png',
       '/projects/flyhigh_2.png',
+      '/projects/flyhigh_3.png',
       '/projects/flyhigh_4.png',
     ],
     tools: ['Flutter', 'Figma', 'Prototyping', 'Dart', 'Firebase', 'Stripe'],
@@ -275,6 +480,124 @@ export const PROJECTS: Project[] = [
       '60 FPS gesture-driven flight comparison matrices',
     ],
     tag: 'Mobile Experience & Ergonomics',
+  },
+  {
+    id: 'broker-crm',
+    title: 'Broker CRM Intelligence',
+    subtitle: 'Institutional Client Relationship & Pipeline Management System',
+    category: 'Enterprise SaaS & CRM',
+    year: '2024',
+    role: 'Lead Product Designer',
+    client: 'Institutional Capital Partners',
+    timeline: '3 Months',
+    shortDescription: 'Comprehensive client relationship management platform for broker-dealers, managing trading accounts, regulatory disclosures, and communication pipelines.',
+    designContribution: 80,
+    devContribution: 20,
+    mockupType: 'desktop',
+    problem:
+      'Account managers were juggling scattered spreadsheets and unorganized emails, losing visibility on pending client verifications and high-value orders.',
+    solution:
+      'Engineered an enterprise CRM dashboard centralizing client profiles, active account verifications, trading activity logs, and compliance audits.',
+    impact: 'Shortened sales pipeline turnaround by 48%; operational tracking efficiency improved 3x.',
+    accentColor: '#6366F1',
+    coverImage: '/projects/crm_1.png',
+    galleryImages: [
+      '/projects/crm_1.png',
+      '/projects/crm_2.png',
+      '/projects/crm_3.png',
+      '/projects/crm_4.png',
+    ],
+    tools: ['Figma', 'Next.js', 'Tailwind CSS', 'TypeScript', 'PostgreSQL'],
+    liveUrl: 'https://github.com/Dolma455',
+    metrics: [
+      { label: 'Turnaround Boost', value: '+48%' },
+      { label: 'Efficiency Gain', value: '3x' },
+      { label: 'Active Managed Portfolios', value: '1,200+' },
+    ],
+    features: [
+      'Visual client lifecycle pipeline with real-time status triggers',
+      'Integrated trading activity telemetry and risk flags',
+      'Compliance and regulatory audit log visualizer',
+    ],
+    tag: 'Enterprise Workflow & CRM Architecture',
+  },
+  {
+    id: 'sagar-distillery',
+    title: 'Sagar Distillery',
+    subtitle: 'Heritage Brand Experience & Direct-to-Consumer Digital Flagship',
+    category: 'Brand & E-Commerce Flagship',
+    year: '2024',
+    role: 'Brand & Digital Product Designer',
+    client: 'Sagar Distillery',
+    timeline: '2.5 Months',
+    shortDescription: 'Luxury heritage brand experience and direct-to-consumer digital flagship with cinematic storytelling and custom product exploration.',
+    designContribution: 85,
+    devContribution: 15,
+    mockupType: 'desktop',
+    problem:
+      'Artisan craft spirits lacked an online digital flagship that communicated their multi-generational heritage and premium craft distillation.',
+    solution:
+      'Designed an atmospheric, cinematic digital brand showcase featuring rich typography, tactile grain textures, and interactive product exploration.',
+    impact: 'Direct-to-consumer brand engagement surged by 64%; international wholesale leads up 45%.',
+    accentColor: '#F59E0B',
+    coverImage: '/projects/sagar_distillery_home.png',
+    galleryImages: [
+      '/projects/sagar_distillery_home.png',
+      '/projects/sagar-journey.png',
+      '/projects/sagar-portfolio.png',
+    ],
+    tools: ['Figma', 'Next.js', 'Tailwind CSS', 'Framer Motion', '3D Blender'],
+    liveUrl: 'https://github.com/Dolma455',
+    metrics: [
+      { label: 'Brand Engagement', value: '+64%' },
+      { label: 'Inquiries', value: '+45%' },
+      { label: 'Session Duration', value: '3m 40s' },
+    ],
+    features: [
+      'Atmospheric cinematic storytelling and micro-interactions',
+      'Product provenance exploration timeline',
+      'Custom typography and luxury aesthetic',
+    ],
+    tag: 'Brand Craft & Flagship',
+  },
+  {
+    id: 'aadi',
+    title: 'Aadi Studio & Digital Experience',
+    subtitle: 'Minimalist Editorial Showcase & Brand Interaction System',
+    category: 'Brand & Web Experience',
+    year: '2023',
+    role: 'Digital Designer & Creative Technologist',
+    client: 'Aadi Creative',
+    timeline: '2 Months',
+    shortDescription: 'Editorial digital experience showcasing minimalist brand storytelling, tactile typography, and interactive process navigation.',
+    designContribution: 85,
+    devContribution: 15,
+    mockupType: 'desktop',
+    problem:
+      'Creative agencies often default to cluttered templates that fail to convey spatial craftsmanship and distinctive brand character.',
+    solution:
+      'Architected an ultra-clean editorial layout emphasizing dramatic typographic scale, smooth layout shifts, and tactile case exploration.',
+    impact: 'Visitor engagement time grew to 4m 12s; client portfolio conversion rose by 39%.',
+    accentColor: '#EC4899',
+    coverImage: '/projects/aadi-design.png',
+    galleryImages: [
+      '/projects/aadi-design.png',
+      '/projects/aadi-how-works.png',
+      '/projects/aadi-footer.png',
+    ],
+    tools: ['Figma', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
+    liveUrl: 'https://github.com/Dolma455',
+    metrics: [
+      { label: 'Session Duration', value: '4m 12s' },
+      { label: 'Conversion Lift', value: '+39%' },
+      { label: 'Design Awards', value: 'Featured' },
+    ],
+    features: [
+      'Editorial typographic tension with high readability',
+      'Interactive methodology breakdown with visual diagrams',
+      'Seamless smooth scroll transitions and micro-interactions',
+    ],
+    tag: 'Editorial Design & Identity',
   },
 ];
 

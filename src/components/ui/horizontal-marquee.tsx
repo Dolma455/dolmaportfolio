@@ -51,17 +51,14 @@ export default function HorizontalScrollMarquee({
         {displayItems.map((tool, idx) => (
           <div
             key={`${tool.name}-${idx}`}
-            className="group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-yellow-300/60 hover:bg-white/[0.08] transition-all duration-300 shadow-md hover:shadow-[0_0_25px_rgba(253,224,71,0.25)] hover:scale-105 shrink-0"
+            className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 hover:border-pink-300/40 hover:bg-white/[0.06] transition-all duration-300 shrink-0 group cursor-default"
           >
-            {/* Logo Only */}
-            <div className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+            <div className="w-5 h-5 flex items-center justify-center shrink-0 [&>svg]:w-5 [&>svg]:h-5">
               {tool.icon}
             </div>
-
-            {/* Tooltip on Hover */}
-            <div className="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20 whitespace-nowrap px-2.5 py-0.5 rounded-md bg-[#0D1117] border border-white/15 text-[10px] font-mono font-bold text-yellow-300 shadow-lg">
+            <span className="text-xs sm:text-sm font-medium text-slate-300 group-hover:text-white transition-colors">
               {tool.name}
-            </div>
+            </span>
           </div>
         ))}
       </div>

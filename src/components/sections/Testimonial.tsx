@@ -69,20 +69,20 @@ export default function Testimonial() {
       <div className="max-w-6xl mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-pink-300 uppercase tracking-wider mb-3">
-            <span>Social Proof // Feedback</span>
+        <div className="flex flex-col items-center text-center mb-12 sm:mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs sm:text-sm font-semibold text-pink-300 tracking-wide mb-4">
+            <span>Client Endorsements</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight font-display">
             Trusted by <span className="text-pink-300">Leaders &amp; Teams</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 font-normal mt-3 max-w-xl">
-            Direct testimonials from founders, product directors, and engineering leads.
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal mt-4 max-w-2xl leading-relaxed">
+            Direct feedback from founders, product managers, and engineering leads.
           </p>
         </div>
 
-        {/* 1. First: Client Companies */}
-        <div className="w-full flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 mb-12 sm:mb-16 py-2 px-4">
+        {/* 1. Client Companies */}
+        <div className="w-full flex flex-wrap items-center justify-center gap-8 sm:gap-14 md:gap-16 mb-12 sm:mb-16 py-2 px-4">
           {COMPANIES.map((company, index) => (
             <motion.div
               key={company.name}
@@ -91,24 +91,24 @@ export default function Testimonial() {
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: index * 0.08 }}
               whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-3 group cursor-default transition-transform"
+              className="flex items-center gap-3.5 group cursor-default transition-transform"
             >
-              <div className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0">
                 <img
                   src={company.logo}
                   alt={company.name}
-                  className="w-full h-full object-contain filter drop-shadow group-hover:brightness-110 transition-all"
+                  className="w-full h-full object-contain filter drop-shadow group-hover:brightness-110 transition-all opacity-85 group-hover:opacity-100"
                 />
               </div>
-              <span className="text-sm sm:text-base md:text-lg font-bold text-slate-200 tracking-tight group-hover:text-white transition-colors">
+              <span className="text-base sm:text-lg font-bold text-slate-200 tracking-tight group-hover:text-white transition-colors">
                 {company.name}
               </span>
             </motion.div>
           ))}
         </div>
 
-        {/* 2. Then: Frames of People (Animated Testimonials) */}
-        <div className="relative rounded-3xl bg-[#0D1117]/80 border border-white/10 p-6 sm:p-10 md:p-14 backdrop-blur-2xl shadow-2xl overflow-hidden">
+        {/* 2. Testimonial Card */}
+        <div className="relative rounded-3xl bg-[#0D1117]/80 border border-white/10 p-6 sm:p-10 md:p-12 backdrop-blur-2xl shadow-2xl overflow-hidden">
           <AnimatedTestimonials testimonials={TESTIMONIAL_DATA} autoplay={true} />
         </div>
 

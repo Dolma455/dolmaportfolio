@@ -89,8 +89,8 @@ export default function Contact() {
 
       <div className="relative z-10 max-w-4xl mx-auto w-full flex flex-col items-center text-center">
         {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-pink-300 uppercase tracking-wider mb-4">
-          <span>Inquiries // Direct Connection</span>
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs sm:text-sm font-semibold text-pink-300 tracking-wide mb-5">
+          <span>Get in Touch</span>
         </div>
 
         {/* Grand Headline Message */}
@@ -99,31 +99,49 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-4"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tight leading-[1.05] mb-5 font-display"
         >
-          LET&apos;S WORK <span className="text-pink-300">TOGETHER.</span>
+          Let&apos;s build something <br className="hidden sm:inline" />
+          <span className="text-pink-300">exceptional together.</span>
         </motion.h2>
 
         {/* Short Subtext */}
-        <p className="text-sm sm:text-base text-slate-300 max-w-lg mx-auto leading-relaxed mb-8 font-normal">
-          Have a project in mind, an open full-time role, or contract opportunity? Let&apos;s connect.
+        <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-xl mx-auto leading-relaxed mb-10 font-normal">
+          Have an open full-time role, contract opportunity, or a project in mind? Let&apos;s connect.
         </p>
 
-        {/* The Action Button */}
-        <div className="mb-12 sm:mb-16">
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-14 sm:mb-16">
           <Magnetic strength={0.3}>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-sm sm:text-base transition-all shadow-[0_0_30px_rgba(var(--theme-glow),0.4)] hover:shadow-[0_0_40px_rgba(var(--theme-glow),0.6)] hover:scale-105 active:scale-98 cursor-pointer"
+              className="inline-flex items-center gap-2.5 px-9 sm:px-10 py-4 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-sm sm:text-base transition-all shadow-[0_0_25px_rgba(var(--theme-glow),0.4)] hover:shadow-[0_0_35px_rgba(var(--theme-glow),0.6)] hover:scale-105 active:scale-98 cursor-pointer"
             >
-              <span>Get in Touch</span>
+              <span>Send Message</span>
               <ArrowUpRight className="w-5 h-5" />
             </button>
           </Magnetic>
+
+          <button
+            onClick={handleCopyEmail}
+            className="inline-flex items-center gap-2 px-7 sm:px-8 py-4 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-slate-200 hover:text-white font-semibold text-sm sm:text-base transition-all cursor-pointer backdrop-blur-md hover:scale-105"
+          >
+            {copied ? (
+              <>
+                <Check className="w-4 h-4 text-emerald-400" />
+                <span className="text-emerald-400">Email Copied!</span>
+              </>
+            ) : (
+              <>
+                <Copy className="w-4 h-4 text-slate-400" />
+                <span>Copy Email</span>
+              </>
+            )}
+          </button>
         </div>
 
         {/* Social Links Network - Pure Icons */}
-        <div className="pt-8 border-t border-white/10 w-full flex items-center justify-center gap-3 sm:gap-4">
+        <div className="pt-10 border-t border-white/10 w-full flex items-center justify-center gap-3.5 sm:gap-5">
           {PERSONAL_INFO.socials.map((social) => (
             <Magnetic key={social.label} strength={0.3}>
               <a
@@ -132,9 +150,9 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 title={social.label}
                 aria-label={social.label}
-                className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-pink-300/40 flex items-center justify-center text-slate-300 hover:text-white transition-all shadow-sm group hover:scale-110 active:scale-95"
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-pink-300/40 flex items-center justify-center text-slate-300 hover:text-white transition-all shadow-sm group hover:scale-110 active:scale-95"
               >
-                <span className="text-pink-300 group-hover:scale-110 transition-transform">
+                <span className="text-pink-300 group-hover:scale-110 transition-transform [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-6 sm:[&>svg]:h-6">
                   {SOCIAL_ICONS[social.id || '']}
                 </span>
               </a>
@@ -142,30 +160,15 @@ export default function Contact() {
           ))}
         </div>
 
-        {/* Copyright & Location Info above with Socials */}
-        <div className="mt-8 text-xs font-mono text-slate-400/70 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 select-none">
-          <span>© 2026 Dolma Lama</span>
-          <span className="hidden sm:inline text-white/20">•</span>
+        {/* Location & Status Info */}
+        <div className="mt-8 text-xs sm:text-sm text-slate-400 font-medium flex items-center justify-center gap-3 select-none">
           <span>Bradford, United Kingdom</span>
-        </div>
-      </div>
-
-      {/* Aesthetic Dimmed DOLMA LAMA Wordmark at Bottom */}
-      <div className="relative z-10 w-full pt-10 sm:pt-14 pb-4 sm:pb-6 select-none pointer-events-none overflow-hidden text-center border-t border-white/[0.04] mt-10 px-2 sm:px-4">
-        {/* Soft bottom ambient glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-24 bg-[rgba(var(--theme-glow),0.04)] blur-[80px] pointer-events-none rounded-full" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="w-full flex items-center justify-center overflow-hidden"
-        >
-          <span className="text-[clamp(3.5rem,13.5vw,15.5rem)] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/20 via-white/[0.08] to-transparent leading-[0.82] uppercase select-none whitespace-nowrap block">
-            DOLMA LAMA
+          <span className="text-white/20">•</span>
+          <span className="text-emerald-400 flex items-center gap-1.5 font-semibold">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            Available for work
           </span>
-        </motion.div>
+        </div>
       </div>
 
       {/* ========================================================================= */}
@@ -197,11 +200,11 @@ export default function Contact() {
               {/* Modal Header */}
               <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10">
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-pink-300 uppercase tracking-wider mb-1">
+                  <div className="flex items-center gap-2 text-xs font-medium text-pink-300 tracking-wide mb-1">
                     <Sparkles className="w-3.5 h-3.5 text-pink-300" />
                     <span>Direct Message</span>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight font-display">
                     Let&apos;s Connect
                   </h3>
                 </div>
@@ -223,10 +226,10 @@ export default function Contact() {
                   <div className="w-14 h-14 rounded-full bg-pink-500/20 text-pink-300 flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
                     <Check className="w-7 h-7" />
                   </div>
-                  <h4 className="text-xl font-bold text-white mb-2 tracking-tight">
+                  <h4 className="text-xl font-bold text-white mb-2 tracking-tight font-display">
                     Message Dispatched!
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-400 max-w-xs mx-auto leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-slate-400 max-w-xs mx-auto leading-relaxed mb-6 font-normal">
                     Thank you for reaching out. I look forward to connecting with you shortly.
                   </p>
                   <button
@@ -234,7 +237,7 @@ export default function Contact() {
                       setFormSubmitted(false);
                       setIsModalOpen(false);
                     }}
-                    className="px-6 py-2.5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs font-mono transition-all cursor-pointer shadow-lg"
+                    className="px-6 py-2.5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-semibold text-xs transition-all cursor-pointer shadow-lg"
                   >
                     Close Window
                   </button>
@@ -242,7 +245,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-medium text-slate-300 mb-1.5">
                       Your Name
                     </label>
                     <input
@@ -256,7 +259,7 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-medium text-slate-300 mb-1.5">
                       Email Address
                     </label>
                     <input
@@ -270,7 +273,7 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-medium text-slate-300 mb-1.5">
                       Project Details
                     </label>
                     <textarea
@@ -287,7 +290,7 @@ export default function Contact() {
                     <button
                       type="button"
                       onClick={handleCopyEmail}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-white transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors cursor-pointer"
                     >
                       {copied ? (
                         <>
@@ -304,7 +307,7 @@ export default function Contact() {
 
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs sm:text-sm font-mono shadow-[0_0_25px_rgba(var(--theme-glow),0.35)] transition-all hover:scale-105 cursor-pointer"
+                      className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-semibold text-xs sm:text-sm shadow-[0_0_20px_rgba(var(--theme-glow),0.35)] transition-all hover:scale-105 cursor-pointer"
                     >
                       <span>Send Inquiry</span>
                       <Send className="w-3.5 h-3.5" />

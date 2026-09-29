@@ -3,90 +3,36 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Sparkles, Filter } from 'lucide-react';
-import { PROJECTS, Project } from '@/data/portfolioData';
-import ProjectModal from '@/components/modals/ProjectModal';
+import { PROJECTS } from '@/data/portfolioData';
 
-// Complete showcase projects array with all available client projects
-const ALL_PROJECT_SHOWCASE = [
-  {
-    id: 'naasa-x',
-    title: 'NAASA X',
-    subtitle: 'Institutional Liquidity & High-Frequency Crypto Trading Cockpit',
-    category: 'Fintech',
-    year: '2024',
-    breakdown: '80% Design · 20% Frontend',
-    description: 'Desktop trading cockpit engineered for low-latency order routing, live depth charts, and automated portfolio management.',
-    coverImage: '/projects/naasaxweb_dashboard.png',
-    tags: ['Fintech', 'Trading', 'Web3', 'Next.js'],
-    data: PROJECTS.find((p) => p.id === 'naasa-x') || PROJECTS[0],
-  },
-  {
-    id: 'agrilink',
-    title: 'AGRILINK',
-    subtitle: 'Smart Agri-Tech Telemetry & Supply Chain Intelligence Platform',
-    category: 'IoT',
-    year: '2024',
-    breakdown: '70% Design · 30% Development',
-    description: 'Centralized telemetry dashboard tracking hardware sensor networks, irrigation levels, and predictive crop analytics in real time.',
-    coverImage: '/projects/agrilink_1.png',
-    tags: ['IoT', 'SaaS', 'Telemetry', 'Hardware'],
-    data: PROJECTS.find((p) => p.id === 'agrilink') || PROJECTS[1],
-  },
-  {
-    id: 'connect-infinity',
-    title: 'CONNECT INFINITY',
-    subtitle: 'Spatial AI Knowledge Hub & Graph Collaboration Engine',
-    category: 'AI',
-    year: '2024',
-    breakdown: '75% Design · 25% Development',
-    description: 'Spatial UI productivity environment combining neural network graph mapping, canvas collaboration, and conversational AI copilots.',
-    coverImage: '/projects/ci_dashboard.png',
-    tags: ['AI', 'Spatial UI', 'Productivity', 'Graph'],
-    data: PROJECTS.find((p) => p.id === 'connect-infinity') || PROJECTS[2],
-  },
-  {
-    id: 'naasa-website',
-    title: 'NAASA WEBSITE',
-    subtitle: 'Corporate Financial Portal & Institutional Investor Hub',
-    category: 'Web',
-    year: '2024',
-    breakdown: '70% Design · 30% Strategy',
-    description: 'Comprehensive financial institution portal with modern institutional branding, investor relations, and regulatory hubs.',
-    coverImage: '/projects/naasawebsite_1.png',
-    tags: ['Corporate', 'Website', 'Finance', 'Design System'],
-    data: PROJECTS.find((p) => p.id === 'naasa-x') || PROJECTS[0],
-  },
-  {
-    id: 'self-service-app',
-    title: 'SELF SERVICE APP',
-    subtitle: 'Biometric Mobile Onboarding & Frictionless KYC Banking Client',
-    category: 'Mobile',
-    year: '2024',
-    breakdown: '70% Design · 10% Development',
-    description: 'Frictionless customer onboarding mobile application featuring biometrics, instant KYC document scanning, and automated account provisioning.',
-    coverImage: '/projects/ssa_dashbaord.PNG',
-    tags: ['Mobile App', 'Fintech', 'KYC', 'Flutter'],
-    data: PROJECTS.find((p) => p.id === 'naasa-x') || PROJECTS[0],
-  },
-  {
-    id: 'sagar-distillery',
-    title: 'SAGAR DISTILLERY',
-    subtitle: 'Heritage Brand Experience & Direct-to-Consumer Digital Flagship',
-    category: 'Brand',
-    year: '2024',
-    breakdown: '90% Design · 10% Development',
-    description: 'Luxury heritage brand experience and direct-to-consumer digital flagship with cinematic storytelling and custom bottle engraving configurator.',
-    coverImage: '/projects/sagar_distillery_home.png',
-    tags: ['Branding', 'Luxury', 'E-Commerce', '3D'],
-    data: PROJECTS.find((p) => p.id === 'loyaledge') || PROJECTS[3],
-  },
-];
+// Complete showcase projects array derived from PROJECTS
+const ALL_PROJECT_SHOWCASE = PROJECTS.map((p) => {
+  let cat = 'Fintech';
+  if (p.category.includes('Mobile') || p.id === 'flyhigh' || p.id === 'self-service-app') cat = 'Mobile';
+  else if (p.category.includes('IoT')) cat = 'IoT';
+  else if (p.category.includes('AI')) cat = 'AI';
+  else if (p.category.includes('Brand') || p.id === 'sagar-distillery' || p.id === 'aadi') cat = 'Brand';
+  else if (p.category.includes('Corporate') || p.id === 'naasa-website') cat = 'Web';
+  else if (p.category.includes('Enterprise') || p.id === 'broker-crm') cat = 'Enterprise';
+  else if (p.category.includes('Fintech') || p.category.includes('Trading')) cat = 'Fintech';
 
-const CATEGORIES = ['All', 'Fintech', 'Mobile', 'IoT', 'AI', 'Web', 'Brand'];
+  return {
+    id: p.id,
+    title: p.title.toUpperCase(),
+    subtitle: p.subtitle,
+    category: cat,
+    year: p.year,
+    breakdown: `${p.designContribution}% Design · ${p.devContribution}% Development`,
+    description: p.shortDescription || p.problem,
+    coverImage: p.coverImage,
+    tags: p.tools.slice(0, 4),
+  };
+});
+
+const CATEGORIES = ['All', 'Fintech', 'Mobile', 'IoT', 'AI', 'Web', 'Brand', 'Enterprise'];
 
 export default function AllProjectsPage() {
   const [activeCategory, setActiveCategory] = useState('All');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'All') return ALL_PROJECT_SHOWCASE;
@@ -94,58 +40,54 @@ export default function AllProjectsPage() {
   }, [activeCategory]);
 
   return (
-    <main className="min-h-screen bg-[#05070A] text-white pt-28 sm:pt-32 pb-24 px-4 sm:px-8 lg:px-14 select-none relative overflow-x-hidden">
+    <main className="min-h-screen bg-[#05070A] text-white pt-28 sm:pt-32 pb-24 px-4 sm:px-8 lg:px-14 select-none relative overflow-x-hidden selection:bg-pink-300/30">
       {/* Ambient Radial Background Glows bound to dynamic theme */}
       <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-[rgba(var(--theme-glow),0.06)] blur-[180px] pointer-events-none rounded-full" />
       <div className="absolute bottom-40 right-1/4 w-[600px] h-[600px] bg-cyan-500/3 blur-[180px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Back navigation */}
-        <div className="mb-8 sm:mb-12">
+        {/* Navigation Breadcrumb */}
+        <div className="mb-10 sm:mb-14">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-slate-400 hover:text-white transition-colors group"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Home</span>
+            <span>Return to Portfolio</span>
           </Link>
         </div>
 
-        {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/10 mb-10">
-          <div>
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-pink-300 font-bold uppercase tracking-[0.2em] mb-2">
-              <Sparkles className="w-4 h-4" />
-              <span>Full Portfolio Archive</span>
-            </div>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight">
-              All <span className="text-pink-300">Projects</span>
-            </h1>
-            <p className="text-sm sm:text-base text-slate-300 font-normal mt-2 max-w-xl leading-relaxed">
-              Explore complete showcase of mobile applications, enterprise platforms, and interactive design systems built by Dolma Lama.
-            </p>
+        {/* Header Title Section */}
+        <div className="flex flex-col gap-4 mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-semibold text-pink-300 w-fit tracking-wide">
+            <Sparkles className="w-3.5 h-3.5 text-pink-300" />
+            <span>Complete Architecture Archive</span>
           </div>
 
-          <div className="text-xs font-mono text-slate-400 shrink-0">
-            Showing <span className="text-white font-bold">{filteredProjects.length}</span> of{' '}
-            <span className="text-white font-bold">{ALL_PROJECT_SHOWCASE.length}</span> projects
-          </div>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight font-display">
+            Selected Engineering &amp; Design Case Studies
+          </h1>
+
+          <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-normal">
+            A comprehensive index of digital systems, consumer mobile applications, and high-frequency fintech platforms built from zero to scale.
+          </p>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap items-center gap-2 mb-12">
-          <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 mr-2">
+        {/* Filter Pills */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-12 pb-6 border-b border-white/10">
+          <div className="flex items-center gap-2 mr-2 text-xs font-mono uppercase tracking-wider text-slate-400">
             <Filter className="w-3.5 h-3.5" />
             <span>Filter:</span>
           </div>
+
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-1.5 rounded-full text-xs font-mono font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-pink-300 text-[#05070A] font-bold shadow-[0_0_15px_rgba(var(--theme-glow),0.4)]'
-                  : 'bg-white/[0.04] border border-white/10 text-slate-300 hover:text-white hover:border-white/20'
+                  ? 'bg-pink-300 text-[#05070A] font-bold shadow-md'
+                  : 'bg-white/[0.04] hover:bg-white/[0.08] text-slate-400 hover:text-white border border-white/5'
               }`}
             >
               {cat}
@@ -156,13 +98,14 @@ export default function AllProjectsPage() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
           {filteredProjects.map((project, idx) => (
-            <div
+            <Link
               key={project.id}
-              onClick={() => setSelectedProject(project.data)}
-              className="group relative flex flex-col rounded-3xl bg-[#0D1117] border border-white/10 hover:border-pink-300/40 p-4 sm:p-5 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] cursor-pointer overflow-hidden"
+              href={`/projects/${project.id}`}
+              className="group relative flex flex-col rounded-3xl bg-[#0D1117] border border-white/10 hover:border-pink-300/40 p-4 sm:p-5 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] cursor-pointer overflow-hidden block"
             >
               {/* Image Frame */}
               <div className="relative aspect-[16/10] w-full rounded-2xl bg-black/60 border border-white/10 overflow-hidden shadow-inner mb-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={project.coverImage}
                   alt={project.title}
@@ -175,7 +118,7 @@ export default function AllProjectsPage() {
 
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
                   <div className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-pink-300 text-[#05070A] font-bold text-xs shadow-xl">
-                    <span>View Case Study</span>
+                    <span>Explore Case Study</span>
                     <ArrowUpRight className="w-3.5 h-3.5 text-[#05070A]" />
                   </div>
                 </div>
@@ -193,9 +136,15 @@ export default function AllProjectsPage() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-pink-300 transition-colors tracking-tight mb-2">
+                  <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-pink-300 transition-colors tracking-tight mb-2 font-display">
                     {project.title}
                   </h3>
+
+                  {/* Contribution Ratio Badge */}
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[11px] font-semibold text-slate-300 mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-pink-400" />
+                    <span>{project.breakdown}</span>
+                  </div>
 
                   <p className="text-xs sm:text-sm text-slate-400 font-normal leading-relaxed line-clamp-2 mb-4">
                     {project.description}
@@ -214,18 +163,10 @@ export default function AllProjectsPage() {
                   ))}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
-
-      {/* Case Study Deep-Dive Modal */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
     </main>
   );
 }

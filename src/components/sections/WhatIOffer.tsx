@@ -196,24 +196,24 @@ export default function WhatIOffer() {
       className="relative py-24 sm:py-32 px-4 sm:px-8 lg:px-12 bg-[#05070A] overflow-hidden border-t border-white/5"
     >
       {/* Ambient Glows bound to dynamic theme */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[rgba(var(--theme-glow),0.06)] blur-[180px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[rgba(var(--theme-glow),0.05)] blur-[180px] pointer-events-none rounded-full" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/3 blur-[180px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-pink-300 uppercase tracking-wider mb-3">
-            <span>Core Disciplines // Technical Craft</span>
+        <div className="flex flex-col items-center text-center mb-12 sm:mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs sm:text-sm font-semibold text-pink-300 tracking-wide mb-4">
+            <span>Capabilities &amp; Services</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
-            My <span className="text-pink-300">Services</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight font-display">
+            Disciplines &amp; <span className="text-pink-300">Expertise</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 font-normal mt-3 max-w-xl">
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal mt-4 max-w-2xl leading-relaxed">
             Human-centered product design paired with scalable full-stack and mobile engineering.
           </p>
         </div>
 
-        {/* Simple 3 Cards Grid for Services */}
+        {/* Minimal 3 Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto w-full">
           {THREE_SERVICES.map((service) => (
             <Link
@@ -221,7 +221,7 @@ export default function WhatIOffer() {
               href={service.href}
               className="block group"
             >
-              <Card className="h-full overflow-hidden rounded-2xl border border-white/10 bg-[#0C1017]/90 backdrop-blur-xl hover:border-pink-300/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-2xl flex flex-col justify-between">
+              <Card className="h-full overflow-hidden rounded-2xl border border-white/10 bg-[#0C1017]/90 backdrop-blur-xl hover:border-pink-300/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
                 {/* Image Banner */}
                 <div className="relative w-full aspect-[16/10] overflow-hidden bg-black/40 border-b border-white/10">
                   <img
@@ -233,29 +233,29 @@ export default function WhatIOffer() {
                 </div>
 
                 {/* Card Content */}
-                <CardContent className="p-6 flex flex-col flex-1 justify-between">
+                <CardContent className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
                   <div>
                     <div className="flex items-center justify-between gap-2">
-                      <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-pink-300 transition-colors">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-pink-300 transition-colors font-display">
                         {service.title}
                       </h3>
                       <ArrowUpRight
-                        size={18}
+                        size={20}
                         className="text-slate-400 group-hover:text-pink-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0"
                       />
                     </div>
 
-                    <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed mt-3">
+                    <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed mt-3.5">
                       {service.description}
                     </p>
                   </div>
 
                   {/* Tags */}
-                  <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-1.5">
+                  <div className="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-2">
                     {service.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-[10px] font-mono text-slate-300 group-hover:border-pink-300/20 transition-colors"
+                        className="px-3 py-1 rounded-md bg-white/[0.04] border border-white/10 text-xs sm:text-sm font-medium text-slate-300 group-hover:border-pink-300/20 transition-colors"
                       >
                         {tag}
                       </span>
@@ -265,38 +265,6 @@ export default function WhatIOffer() {
               </Card>
             </Link>
           ))}
-        </div>
-
-        {/* ================================================== */}
-        {/* EXPERTISE TOOLS — Horizontal Scrolling Showcase    */}
-        {/* ================================================== */}
-        <div className="pt-16 sm:pt-24 flex flex-col items-center w-full">
-          <div className="text-center mb-6 sm:mb-8">
-            <span className="text-xs font-mono uppercase tracking-[0.2em] text-pink-300 font-bold">
-              Expertise Tools &amp; Technologies
-            </span>
-            <p className="text-xs text-slate-400 font-mono mt-1">
-              Horizontal scrolling ecosystem of core frameworks, engineering engines &amp; cloud infrastructure
-            </p>
-          </div>
-
-          <div className="w-full max-w-6xl mx-auto space-y-4 sm:space-y-5">
-            {/* Track 1: Smooth Horizontal Scroll Left */}
-            <HorizontalScrollMarquee
-              items={EXPERTISE_TOOLS}
-              direction="left"
-              speedSeconds={30}
-              pauseOnHover={true}
-            />
-
-            {/* Track 2: Smooth Horizontal Scroll Right (Reversed) */}
-            <HorizontalScrollMarquee
-              items={[...EXPERTISE_TOOLS].reverse()}
-              direction="right"
-              speedSeconds={34}
-              pauseOnHover={true}
-            />
-          </div>
         </div>
       </div>
     </section>

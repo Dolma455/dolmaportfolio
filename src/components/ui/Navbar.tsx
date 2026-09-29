@@ -133,13 +133,13 @@ export default function Navbar() {
             onClick={(e) => scrollToSection(e, '#home')}
             className="flex items-center group cursor-pointer select-none shrink-0 mr-1 sm:mr-2"
           >
-            <span className="text-base sm:text-lg font-black tracking-tight text-pink-300 hover:text-pink-200 transition-colors drop-shadow-[0_0_12px_rgba(var(--theme-glow),0.35)]">
+            <span className="text-lg sm:text-xl font-extrabold tracking-tight text-pink-300 hover:text-pink-200 transition-colors font-display drop-shadow-[0_0_12px_rgba(var(--theme-glow),0.35)]">
               Dolma
             </span>
           </a>
 
           {/* Center Links: Services, Projects, Experience, Clients, Contact */}
-          <div className="hidden md:flex items-center gap-0.5 lg:gap-1 shrink-0 whitespace-nowrap">
+          <div className="hidden md:flex items-center gap-1 shrink-0 whitespace-nowrap">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.substring(1);
               return (
@@ -147,10 +147,10 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => scrollToSection(e, item.href)}
-                  className={`px-3 lg:px-3.5 py-2 rounded-full text-[13px] sm:text-sm font-semibold tracking-normal transition-all shrink-0 whitespace-nowrap ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-normal transition-all shrink-0 whitespace-nowrap ${
                     isActive
                       ? 'text-pink-300 bg-pink-500/10 shadow-sm font-bold'
-                      : 'text-slate-200 hover:text-white hover:bg-white/5'
+                      : 'text-slate-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {item.label}
@@ -209,7 +209,7 @@ export default function Navbar() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 h-8.5 sm:h-9 md:h-10 px-3.5 sm:px-4 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-pink-300/40 text-xs sm:text-sm font-semibold tracking-normal text-slate-200 hover:text-white transition-all backdrop-blur-md cursor-pointer shrink-0 whitespace-nowrap"
+              className="hidden sm:inline-flex items-center gap-1.5 h-8.5 sm:h-9 md:h-10 px-3.5 sm:px-4 rounded-full bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] hover:border-pink-300/40 text-xs sm:text-sm font-medium tracking-normal text-slate-200 hover:text-white transition-all backdrop-blur-md cursor-pointer shrink-0 whitespace-nowrap"
             >
               <Download className="w-3.5 h-3.5 text-pink-300 shrink-0" />
               <span>CV</span>
@@ -219,7 +219,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={(e) => scrollToSection(e, '#contact')}
-              className="inline-flex items-center gap-1.5 h-8.5 sm:h-9 md:h-10 px-4 sm:px-5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-bold text-xs sm:text-sm tracking-normal transition-all shadow-[0_0_20px_rgba(var(--theme-glow),0.35)] hover:scale-105 backdrop-blur-md cursor-pointer shrink-0 whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 h-8.5 sm:h-9 md:h-10 px-4 sm:px-5 rounded-full bg-pink-300 hover:bg-pink-200 text-[#05070A] font-semibold text-xs sm:text-sm tracking-normal transition-all shadow-[0_0_20px_rgba(var(--theme-glow),0.35)] hover:scale-105 backdrop-blur-md cursor-pointer shrink-0 whitespace-nowrap"
             >
               <span>Let&apos;s Connect</span>
               <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />

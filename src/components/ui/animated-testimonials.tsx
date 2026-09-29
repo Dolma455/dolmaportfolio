@@ -44,45 +44,35 @@ export function AnimatedTestimonials({
 
   return (
     <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-center">
         
-        {/* Left: Stacked 3D Image Cards */}
-        <div className="relative w-full aspect-[4/3] sm:aspect-square max-w-md mx-auto">
+        {/* Left: Clean Image Card */}
+        <div className="relative w-full aspect-[4/3] sm:aspect-square max-w-sm mx-auto">
           <AnimatePresence mode="popLayout">
             {testimonials.map((testimonial, index) => {
-              const rot = rotations[index % rotations.length];
+              if (!isActive(index)) return null;
               return (
                 <motion.div
                   key={testimonial.src}
                   initial={{
                     opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: rot,
+                    scale: 0.95,
                   }}
                   animate={{
-                    opacity: isActive(index) ? 1 : 0.65,
-                    scale: isActive(index) ? 1 : 0.94,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : rot,
-                    zIndex: isActive(index)
-                      ? 30
-                      : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -40, 0] : 0,
+                    opacity: 1,
+                    scale: 1,
                   }}
                   exit={{
                     opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: rot,
+                    scale: 0.95,
                   }}
                   transition={{
-                    duration: 0.45,
+                    duration: 0.35,
                     ease: 'easeInOut',
                   }}
-                  className="absolute inset-0 origin-bottom"
+                  className="w-full h-full"
                 >
-                  <div className="w-full h-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-[#0D1117]">
+                  <div className="w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#0D1117]">
                     <img
                       src={testimonial.src}
                       alt={testimonial.name}
@@ -101,7 +91,7 @@ export function AnimatedTestimonials({
           <motion.div
             key={active}
             initial={{
-              y: 20,
+              y: 15,
               opacity: 0,
             }}
             animate={{
@@ -109,7 +99,7 @@ export function AnimatedTestimonials({
               opacity: 1,
             }}
             exit={{
-              y: -20,
+              y: -15,
               opacity: 0,
             }}
             transition={{
@@ -118,17 +108,17 @@ export function AnimatedTestimonials({
             }}
           >
             {/* Author Name */}
-            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">
               {testimonials[active].name}
             </h3>
 
             {/* Designation */}
-            <p className="text-xs sm:text-sm font-mono text-slate-400 mt-1">
+            <p className="text-sm sm:text-base text-pink-300 font-semibold mt-1">
               {testimonials[active].designation}
             </p>
 
             {/* Word-by-word Animated Quote */}
-            <motion.p className="mt-6 sm:mt-8 text-base sm:text-lg lg:text-xl text-slate-200 leading-relaxed font-normal">
+            <motion.p className="mt-6 sm:mt-7 text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 leading-relaxed font-normal">
               {testimonials[active].quote.split(' ').map((word, index) => (
                 <motion.span
                   key={index}

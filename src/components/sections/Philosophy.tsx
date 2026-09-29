@@ -15,20 +15,20 @@ export default function Philosophy() {
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono text-pink-300 uppercase tracking-wider mb-3">
-            <span>Career // Experience</span>
+        <div className="flex flex-col items-center text-center mb-12 sm:mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs sm:text-sm font-semibold text-pink-300 tracking-wide mb-4">
+            <span>Career Journey</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight font-display">
             Career &amp; <span className="text-pink-300">Experience</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 font-normal mt-3 max-w-xl">
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 font-normal mt-4 max-w-2xl leading-relaxed">
             A journey bridging human-centered product ergonomics with high-performance software engineering.
           </p>
         </div>
 
         {/* Combined Layout: Minimized Portrait on Left + Career & Experience on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
 
           {/* ========================================================================= */}
           {/* LEFT COLUMN: Minimized Portrait Card (5 cols)                            */}
@@ -39,10 +39,10 @@ export default function Philosophy() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="rounded-3xl bg-[#0D1117] border border-white/10 p-5 shadow-2xl relative overflow-hidden group"
+              className="rounded-3xl bg-[#0D1117] border border-white/10 p-6 sm:p-7 shadow-2xl relative overflow-hidden group"
             >
               {/* Minimized Portrait Image Container */}
-              <div className="relative aspect-[4/4.2] w-full max-w-[310px] mx-auto rounded-2xl overflow-hidden bg-black/40 border border-white/10 mb-4 group-hover:border-pink-300/40 transition-all duration-500">
+              <div className="relative aspect-[4/4.2] w-full max-w-[320px] mx-auto rounded-2xl overflow-hidden bg-black/40 border border-white/10 mb-5 group-hover:border-pink-300/40 transition-all duration-500">
                 <img
                   src="/dolmalama.png"
                   alt="Dolma Lama"
@@ -53,11 +53,11 @@ export default function Philosophy() {
 
               {/* Identity & Short Bio */}
               <div className="text-left px-1">
-                <h3 className="text-xl font-bold text-white tracking-tight">Dolma Lama</h3>
-                <p className="text-xs font-mono text-pink-300 mt-0.5 mb-2.5 font-semibold">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-display">Dolma Lama</h3>
+                <p className="text-sm text-pink-300 mt-1 mb-3 font-semibold">
                   Product Designer &amp; Engineer
                 </p>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
                   Experienced product designer with robust engineering depth across mobile app development, design systems, and cloud infrastructure.
                 </p>
               </div>
@@ -73,7 +73,7 @@ export default function Philosophy() {
             <div className="relative pl-7 sm:pl-9 space-y-6">
               
               {/* Vertical connector line dynamically bound to active theme */}
-              <div className="absolute left-[14px] top-3 bottom-3 w-[2px] bg-pink-300/25" />
+              <div className="absolute left-[14px] top-3 bottom-3 w-[2px] bg-white/10" />
 
               {EXPERIENCES.map((exp, index) => (
                 <motion.div
@@ -85,37 +85,37 @@ export default function Philosophy() {
                   className="relative group"
                 >
                   {/* Circular Pointer Node */}
-                  <div className="absolute left-[-21px] sm:left-[-29px] top-6 w-4 h-4 rounded-full bg-[#05070A] border-2 border-pink-300 flex items-center justify-center shadow-[0_0_10px_rgba(var(--theme-glow),0.4)] group-hover:scale-125 transition-transform">
+                  <div className="absolute left-[-21px] sm:left-[-29px] top-6 w-4 h-4 rounded-full bg-[#05070A] border-2 border-pink-300 flex items-center justify-center shadow-[0_0_10px_rgba(var(--theme-glow),0.3)] group-hover:scale-125 transition-transform">
                     <div className="w-1.5 h-1.5 rounded-full bg-pink-300" />
                   </div>
 
                   {/* Experience Card */}
-                  <div className="rounded-3xl bg-[#0D1117] border border-white/10 p-5 sm:p-6 shadow-xl group-hover:border-pink-300/40 transition-all text-left">
+                  <div className="rounded-2xl bg-[#0D1117] border border-white/10 p-6 sm:p-7 shadow-xl group-hover:border-pink-300/30 transition-all text-left">
                     
                     {/* Card Top Row: Role & Period on Left, Company/Uni at Top Right */}
-                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-3">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2.5 mb-3.5">
                       <div>
-                        <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-tight font-display">
                           {exp.role}
                         </h3>
-                        <span className="text-xs font-mono text-pink-300 font-semibold tracking-wide">
+                        <span className="text-xs sm:text-sm text-pink-300 font-semibold tracking-wide">
                           {exp.period}
                         </span>
                       </div>
 
                       {/* Company & Location at Right Top */}
-                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs sm:text-sm font-semibold text-slate-200 shrink-0 self-start sm:self-auto">
+                      <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-xs sm:text-sm font-semibold text-slate-200 shrink-0 self-start sm:self-auto">
                         {index === 0 ? (
-                          <GraduationCap className="w-3.5 h-3.5 text-pink-300 shrink-0" />
+                          <GraduationCap className="w-4 h-4 text-pink-300 shrink-0" />
                         ) : (
-                          <Briefcase className="w-3.5 h-3.5 text-pink-300 shrink-0" />
+                          <Briefcase className="w-4 h-4 text-pink-300 shrink-0" />
                         )}
                         <span>{exp.company}</span>
                       </div>
                     </div>
 
                     {/* Concise Description */}
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                    <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
                       {exp.description}
                     </p>
                   </div>
